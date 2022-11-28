@@ -20,4 +20,25 @@ model User {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  weets     Weet[]
+}
+
+model Hashtag {
+  id   String @id @default(cuid())
+  name String @unique
+
+  weets Weet[]
+}
+
+model Weet {
+  id String @id @default(cuid())
+
+  content  String
+  author   User      @relation(fields: [userId], references: [id])
+  hashtags Hashtag[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  userId String
 }
