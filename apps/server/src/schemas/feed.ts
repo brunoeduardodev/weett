@@ -6,3 +6,10 @@ export const createPostSchema = z.object({
 });
 
 export type CreatePostInput = z.infer<typeof createPostSchema>;
+
+export const getFeedSchema = z.object({
+  take: z.number().max(50).default(20),
+  skip: z.number().default(0),
+});
+
+export type GetFeedInput = z.infer<typeof getFeedSchema>;
