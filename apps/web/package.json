@@ -1,7 +1,6 @@
 {
   "name": "web",
   "version": "0.0.0",
-  "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -9,6 +8,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@tanstack/react-query": "^4.18.0",
+    "@trpc/client": "^10.4.1",
+    "@trpc/react-query": "^10.4.1",
+    "@trpc/server": "^10.4.1",
     "next": "13.0.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -16,13 +19,14 @@
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
-    "eslint-config-custom": "workspace:*",
-    "eslint-config-next": "13.0.0",
-    "eslint": "7.32.0",
-    "tsconfig": "workspace:*",
     "@types/node": "^17.0.12",
     "@types/react": "^18.0.22",
     "@types/react-dom": "^18.0.7",
+    "@weett/server": "workspace:*",
+    "eslint": "7.32.0",
+    "eslint-config-custom": "workspace:*",
+    "eslint-config-next": "13.0.0",
+    "tsconfig": "workspace:*",
     "typescript": "^4.5.3"
   }
 }

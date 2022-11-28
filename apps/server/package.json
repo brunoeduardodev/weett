@@ -1,8 +1,7 @@
 {
-  "name": "server",
+  "name": "@weett/server",
   "version": "0.0.0",
-  "private": "true",
-  "main": "server.ts",
+  "main": "src/index.ts",
   "scripts": {
     "dev": "nodemon"
   },
@@ -14,6 +13,8 @@
   },
   "dependencies": {
     "@trpc/server": "^10.4.1",
+    "@types/cors": "^2.8.12",
+    "cors": "^2.8.5",
     "express": "^4.18.2"
   }
 }
