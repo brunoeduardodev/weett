@@ -1,16 +1,16 @@
 import bcrypt from "bcrypt";
 import { TRPCError } from "@trpc/server";
 import { prisma } from "../../database/prisma";
-import { CreateUserInput } from "../../schemas/authentication";
+import { UserSignupInput } from "../../schemas/authentication";
 import { isHandleAvailable } from "../handle/isHandleAvailable";
 import { generateUserToken } from "../../utils/jwt";
 
-export const createUser = async ({
+export const signup = async ({
   email,
   handle,
   name,
   password,
-}: CreateUserInput) => {
+}: UserSignupInput) => {
   const allowedHandle = await isHandleAvailable({ handle });
   if (!allowedHandle)
     throw new TRPCError({

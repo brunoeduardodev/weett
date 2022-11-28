@@ -1,9 +1,11 @@
-import { createUserSchema } from "../schemas/authentication";
-import { createUser } from "../services/authentication/createUser";
+import { userSignupSchema } from "../schemas/authentication";
+import { signup } from "../services/authentication/signup";
 import { t } from "../trpc";
 
 export const authenticationRouter = t.router({
-  userCreate: t.procedure.input(createUserSchema).mutation(({ input }) => {
-    return createUser(input);
-  }),
+  userSignupSchema: t.procedure
+    .input(userSignupSchema)
+    .mutation(({ input }) => {
+      return signup(input);
+    }),
 });
