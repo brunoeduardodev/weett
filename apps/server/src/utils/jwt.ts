@@ -4,13 +4,13 @@ import { TRPCError } from "@trpc/server";
 import { prisma } from "../database/prisma";
 import { jwtSchema } from "../schemas/jwt";
 
-const generateUserToken = (user: User) => {
+export const generateUserToken = (user: User) => {
   const token = jwt.sign(user.id, process.env.JWT_SECRET!);
 
   return `Bearer ${token}`;
 };
 
-const getUserFromToken = async (rawToken: string) => {
+export const getUserFromToken = async (rawToken: string) => {
   const [bearer, token] = rawToken.split("Bearer ");
 
   if (!token)

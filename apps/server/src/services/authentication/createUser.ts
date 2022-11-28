@@ -3,6 +3,7 @@ import { TRPCError } from "@trpc/server";
 import { prisma } from "../../database/prisma";
 import { CreateUserInput } from "../../schemas/authentication";
 import { isHandleAvailable } from "../handle/isHandleAvailable";
+import { generateUserToken } from "../../utils/jwt";
 
 export const createUser = async ({
   email,
@@ -26,9 +27,10 @@ export const createUser = async ({
 
   const hashedPassword = await bcrypt.hash(password, 12);
 
-  const user = prisma.user.create({
+  const user = await prisma.user.create({
     data: { email, handle, name, password: hashedPassword },
   });
 
-  return { user };
+  const token = generateUserToken(user);
+  return { user, token };
 };
