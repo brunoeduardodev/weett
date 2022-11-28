@@ -1,0 +1,12 @@
+version: "3.1"
+
+services:
+  weett_db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: weett_db
+    ports:
+      - 5432:5432
