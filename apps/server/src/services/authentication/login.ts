@@ -3,6 +3,7 @@ import { TRPCError } from "@trpc/server";
 import { prisma } from "../../database/prisma";
 import { UserLoginInput } from "../../schemas/authentication";
 import { generateUserToken } from "../../utils/jwt";
+import { sanitizeUser } from "../../views/user";
 
 export const login = async ({ email, password }: UserLoginInput) => {
   const user = await prisma.user.findUnique({ where: { email } });
@@ -21,5 +22,5 @@ export const login = async ({ email, password }: UserLoginInput) => {
 
   const token = generateUserToken(user);
 
-  return { token, user };
+  return { token, user: sanitizeUser(user) };
 };

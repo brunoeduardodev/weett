@@ -4,6 +4,7 @@ import { prisma } from "../../database/prisma";
 import { UserSignupInput } from "../../schemas/authentication";
 import { isHandleAvailable } from "../handle/isHandleAvailable";
 import { generateUserToken } from "../../utils/jwt";
+import { sanitizeUser } from "../../views/user";
 
 export const signup = async ({
   email,
@@ -32,5 +33,5 @@ export const signup = async ({
   });
 
   const token = generateUserToken(user);
-  return { user, token };
+  return { user: sanitizeUser(user), token };
 };
