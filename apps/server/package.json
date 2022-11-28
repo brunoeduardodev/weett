@@ -15,9 +15,12 @@
   "dependencies": {
     "@prisma/client": "^4.6.1",
     "@trpc/server": "^10.4.1",
+    "@types/bcrypt": "^5.0.0",
     "@types/cors": "^2.8.12",
+    "bcrypt": "^5.1.0",
     "cors": "^2.8.5",
     "express": "^4.18.2",
-    "prisma": "^4.6.1"
+    "prisma": "^4.6.1",
+    "zod": "^3.19.1"
   }
 }
