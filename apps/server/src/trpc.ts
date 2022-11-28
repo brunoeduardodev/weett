@@ -1,5 +1,6 @@
 import { inferAsyncReturnType, initTRPC } from "@trpc/server";
 import * as trpcExpress from "@trpc/server/adapters/express";
+import { appRouter } from "./routers";
 
 export const createContext = ({
   req,
@@ -10,5 +11,5 @@ type Context = inferAsyncReturnType<typeof createContext>;
 
 export const t = initTRPC.context<Context>().create();
 
-export { appRouter } from "./routes";
-export type { AppRouter } from "./routes";
+export { appRouter } from "./routers";
+export type { AppRouter } from "./routers";
