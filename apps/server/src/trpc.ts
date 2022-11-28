@@ -1,12 +1,26 @@
 import { inferAsyncReturnType, initTRPC } from "@trpc/server";
 import * as trpcExpress from "@trpc/server/adapters/express";
+import { prisma } from "./database/prisma";
+import { getUserFromToken } from "./utils/jwt";
 
-export const createContext = ({
+export const createContext = async ({
   req,
   res,
-}: trpcExpress.CreateExpressContextOptions) => ({});
+}: trpcExpress.CreateExpressContextOptions) => {
+  const token = req.headers.authorization;
+  if (!token)
+    return {
+      prisma,
+    };
 
-type Context = inferAsyncReturnType<typeof createContext>;
+  const user = await getUserFromToken(token);
+  return {
+    user,
+    prisma,
+  };
+};
+
+export type Context = inferAsyncReturnType<typeof createContext>;
 
 export const t = initTRPC.context<Context>().create();
 
