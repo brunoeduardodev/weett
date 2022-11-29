@@ -17,8 +17,12 @@ export const TRPCProvider = ({ children }: PropsWithChildren) => {
       links: [
         httpBatchLink({
           url: getBaseUrl(),
-          headers: {
-            authorization: getAuthCookie(),
+          headers() {
+            const authorization = getAuthCookie();
+
+            return {
+              ...(authorization ? { authorization } : {}),
+            };
           },
         }),
       ],

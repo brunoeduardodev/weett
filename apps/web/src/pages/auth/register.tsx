@@ -21,7 +21,11 @@ const RegisterPage: WithLayout<NextPage> = () => {
 
   const router = useRouter();
 
-  const signupMutation = trpc.userSignup.useMutation({
+  const {
+    isLoading,
+    error: signUpError,
+    mutate: signUp,
+  } = trpc.userSignup.useMutation({
     onSuccess: (data) => {
       console.log({ data });
       router.replace("/");
@@ -30,9 +34,9 @@ const RegisterPage: WithLayout<NextPage> = () => {
 
   const handleRegister = useCallback(
     (data: UserSignupInput) => {
-      signupMutation.mutateAsync(data);
+      signUp(data);
     },
-    [signupMutation]
+    [signUp]
   );
 
   return (
@@ -79,9 +83,15 @@ const RegisterPage: WithLayout<NextPage> = () => {
           {...register("password")}
         />
 
-        <Button isLoading={signupMutation.isLoading} variant="primary">
+        <Button isLoading={isLoading} variant="primary">
           Register
         </Button>
+
+        {signUpError && (
+          <p className="text-red-500 font-bold text-sm">
+            {signUpError.message}
+          </p>
+        )}
       </form>
     </>
   );
