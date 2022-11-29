@@ -7,6 +7,7 @@ import {
 
 type Props = {
   children: ReactNode;
+  isLoading?: boolean;
   variant: "primary" | "secondary";
 } & DetailedHTMLProps<
   ButtonHTMLAttributes<HTMLButtonElement>,
@@ -14,14 +15,19 @@ type Props = {
 >;
 
 export const Button = forwardRef<HTMLButtonElement, Props>(
-  ({ children, variant, ...props }, ref) => {
+  ({ children, variant, disabled, isLoading, ...props }, ref) => {
     return (
       <button
         ref={ref}
-        className="bg-cyan-500 hover:bg-cyan-600 active:bg-cyan-700 text-white transition-colors ease-in-out duration-300 uppercase py-3 px-6 font-bold rounded-lg min-w-[200px]"
+        disabled={disabled || isLoading}
+        className="flex justify-center bg-cyan-500 disabled:bg-cyan-400 disabled:pointer-events-none hover:bg-cyan-600 active:bg-cyan-700 text-white transition-colors ease-in-out duration-300 uppercase py-3 px-6 font-bold rounded-lg min-w-[200px]"
         {...props}
       >
-        {children}
+        {isLoading ? (
+          <span className="animate-spin w-5 h-5 rounded-full border-2 border-solid border-slate-300 border-r-white" />
+        ) : (
+          children
+        )}
       </button>
     );
   }
