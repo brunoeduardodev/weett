@@ -8,6 +8,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@weett/schemas": "workspace:*",
     "@hookform/resolvers": "^2.9.10",
     "@tanstack/react-query": "^4.18.0",
     "@trpc/client": "^10.4.1",

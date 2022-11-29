@@ -1,4 +1,4 @@
-import { getFeedSchema } from "../../schemas/feed";
+import { getFeedSchema } from "@weett/schemas";
 import { t } from "../../trpc";
 
 export const feedGet = t.procedure

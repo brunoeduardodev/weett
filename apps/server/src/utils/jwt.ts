@@ -16,7 +16,8 @@ export const getUserFromToken = async (rawToken: string) => {
   if (!token)
     throw new TRPCError({ code: "BAD_REQUEST", message: "Invalid JWT" });
 
-  const userId = jwtSchema.parse(token);
+  const payload = jwt.verify(token, process.env.JWT_SECRET!);
+  const userId = jwtSchema.parse(payload);
 
   const user = await prisma.user.findUniqueOrThrow({ where: { id: userId } });
   return user;

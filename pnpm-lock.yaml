@@ -20,6 +20,7 @@ importers:
       '@types/cors': ^2.8.12
       '@types/express': ^4.17.14
       '@types/jsonwebtoken': ^8.5.9
+      '@weett/schemas': workspace:*
       bcrypt: ^5.1.0
       cors: ^2.8.5
       eslint-config-custom: workspace:*
@@ -34,6 +35,7 @@ importers:
       '@trpc/server': 10.4.1
       '@types/bcrypt': 5.0.0
       '@types/cors': 2.8.12
+      '@weett/schemas': link:../../packages/schemas
       bcrypt: 5.1.0
       cors: 2.8.5
       express: 4.18.2
@@ -58,6 +60,7 @@ importers:
       '@types/node': ^17.0.12
       '@types/react': ^18.0.22
       '@types/react-dom': ^18.0.7
+      '@weett/schemas': workspace:*
       '@weett/server': workspace:*
       autoprefixer: ^10.4.13
       eslint: 7.32.0
@@ -79,6 +82,7 @@ importers:
       '@trpc/client': 10.4.1_@trpc+server@10.4.1
       '@trpc/react-query': 10.4.1_vfg2wewkjrohb7a47nwqf7fxxi
       '@trpc/server': 10.4.1
+      '@weett/schemas': link:../../packages/schemas
       next: 13.0.0_672uxklweod7ene3nqtsh262ca
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -114,6 +118,12 @@ importers:
       eslint-plugin-react: 7.31.8_eslint@7.32.0
     devDependencies:
       typescript: 4.9.3
+
+  packages/schemas:
+    specifiers:
+      zod: ^3.19.1
+    dependencies:
+      zod: 3.19.1
 
   packages/tsconfig:
     specifiers: {}

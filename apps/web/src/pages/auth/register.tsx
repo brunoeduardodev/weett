@@ -1,23 +1,24 @@
-import { NextPage } from "next";
 import { useForm } from "react-hook-form";
 import { Button } from "../../components/buttons/Button";
 import { TextField } from "../../components/Inputs/TextField";
 import { AuthenticationLayout } from "../../layouts/authentication";
 import { WithLayout } from "../../layouts/types";
-import { RegisterUserInput, registerUserSchema } from "../../schemas/register";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useCallback } from "react";
 import { trpc } from "../../utils/trpc";
 import { useRouter } from "next/router";
+import { NextPage } from "next";
+import { UserSignupInput, userSignupSchema } from "@weett/schemas";
 
 const RegisterPage: WithLayout<NextPage> = () => {
   const {
     register,
     formState: { errors, isDirty },
     handleSubmit,
-  } = useForm<RegisterUserInput>({
-    resolver: zodResolver(registerUserSchema),
+  } = useForm<UserSignupInput>({
+    resolver: zodResolver(userSignupSchema),
   });
+
   const router = useRouter();
 
   const signupMutation = trpc.userSignup.useMutation({
@@ -28,7 +29,7 @@ const RegisterPage: WithLayout<NextPage> = () => {
   });
 
   const handleRegister = useCallback(
-    (data: RegisterUserInput) => {
+    (data: UserSignupInput) => {
       signupMutation.mutateAsync(data);
     },
     [signupMutation]
