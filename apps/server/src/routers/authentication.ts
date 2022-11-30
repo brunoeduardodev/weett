@@ -29,26 +29,24 @@ export const authenticationRouter = t.router({
     }),
   getUser: t.procedure
     .input(getUserSchema)
-    .query(({ input: { id }, ctx: { prisma } }) => {
+    .query(({ input: id, ctx: { prisma } }) => {
       return prisma.user.findUnique({ where: { id } });
     }),
   getUserByEmail: t.procedure
     .input(getUserByEmailSchema)
-    .query(({ input: { email }, ctx: { prisma } }) => {
+    .query(({ input: email, ctx: { prisma } }) => {
       return prisma.user.findUnique({ where: { email } });
     }),
   getUserByAccount: t.procedure
     .input(getUserByAccountSchema)
-    .query(
-      async ({ input: { provider_providerAccountId }, ctx: { prisma } }) => {
-        const account = await prisma.account.findUnique({
-          where: { provider_providerAccountId },
-          select: { user: true },
-        });
+    .query(async ({ input: provider_providerAccountId, ctx: { prisma } }) => {
+      const account = await prisma.account.findUnique({
+        where: { provider_providerAccountId },
+        select: { user: true },
+      });
 
-        return account?.user || null;
-      }
-    ),
+      return account?.user || null;
+    }),
   updateUser: t.procedure
     .input(updateUserSchema)
     .mutation(async ({ input: { id, ...data }, ctx: { prisma } }) => {
@@ -60,25 +58,25 @@ export const authenticationRouter = t.router({
 
   deleteUser: t.procedure
     .input(deleteUserSchema)
-    .mutation(async ({ input: { id }, ctx: { prisma } }) => {
+    .mutation(async ({ input: id, ctx: { prisma } }) => {
       return prisma.user.delete({ where: { id } });
     }),
 
   linkAccount: t.procedure
     .input(linkAccountSchema)
     .mutation(async ({ input, ctx: { prisma } }) => {
-      return prisma.account.create({ data: input });
+      prisma.account.create({ data: input });
     }),
 
   unlinkAccount: t.procedure
     .input(unlinkAccountSchema)
-    .mutation(({ input: { provider_providerAccountId }, ctx: { prisma } }) => {
-      return prisma.account.delete({ where: { provider_providerAccountId } });
+    .mutation(({ input: provider_providerAccountId, ctx: { prisma } }) => {
+      prisma.account.delete({ where: { provider_providerAccountId } });
     }),
 
   getSessionAndUser: t.procedure
     .input(getSessionAndUserSchema)
-    .query(async ({ input: { sessionToken }, ctx: { prisma } }) => {
+    .query(async ({ input: sessionToken, ctx: { prisma } }) => {
       const userAndSession = await prisma.session.findUnique({
         where: { sessionToken },
         include: { user: true },
@@ -109,7 +107,7 @@ export const authenticationRouter = t.router({
 
   deleteSession: t.procedure
     .input(deleteSessionSchema)
-    .mutation(({ input: { sessionToken }, ctx: { prisma } }) => {
+    .mutation(({ input: sessionToken, ctx: { prisma } }) => {
       return prisma.session.delete({ where: { sessionToken } });
     }),
 });
