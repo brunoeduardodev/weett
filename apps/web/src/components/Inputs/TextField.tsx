@@ -21,7 +21,7 @@ export const TextField = React.forwardRef<HTMLInputElement, Props>(
           {label}
         </label>
         <input
-          className="w-full p-3 rounded-md"
+          className="w-full p-3 rounded-md border-2 border-slate-100"
           id={id}
           ref={ref}
           placeholder={placeholder}
