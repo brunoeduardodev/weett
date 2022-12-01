@@ -2,10 +2,16 @@ import jwt from "jsonwebtoken";
 import { User } from "@prisma/client";
 import { TRPCError } from "@trpc/server";
 import { prisma } from "../database/prisma";
-import { jwtSchema } from "../schemas/jwt";
+import { JwtContent, jwtContentSchema } from "@weett/schemas/jwt";
 
 export const generateUserToken = (user: User) => {
-  const token = jwt.sign(user.id, process.env.JWT_SECRET!);
+  const content: JwtContent = {
+    id: user.id,
+    email: user.email,
+    name: user.name,
+  };
+
+  const token = jwt.sign(content, process.env.JWT_SECRET!);
 
   return `Bearer ${token}`;
 };
@@ -17,8 +23,8 @@ export const getUserFromToken = async (rawToken: string) => {
     throw new TRPCError({ code: "BAD_REQUEST", message: "Invalid JWT" });
 
   const payload = jwt.verify(token, process.env.JWT_SECRET!);
-  const userId = jwtSchema.parse(payload);
+  const { id } = jwtContentSchema.parse(payload);
 
-  const user = await prisma.user.findUniqueOrThrow({ where: { id: userId } });
+  const user = await prisma.user.findUniqueOrThrow({ where: { id } });
   return user;
 };

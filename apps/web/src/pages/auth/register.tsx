@@ -9,6 +9,7 @@ import { trpc } from "../../utils/trpc";
 import { useRouter } from "next/router";
 import { NextPage } from "next";
 import { UserSignupInput, userSignupSchema } from "@weett/schemas";
+import { useAuthentication } from "../../contexts/authentication";
 
 const RegisterPage: WithLayout<NextPage> = () => {
   const {
@@ -19,6 +20,7 @@ const RegisterPage: WithLayout<NextPage> = () => {
     resolver: zodResolver(userSignupSchema),
   });
 
+  const { authenticate } = useAuthentication();
   const router = useRouter();
 
   const {
@@ -26,8 +28,8 @@ const RegisterPage: WithLayout<NextPage> = () => {
     error: signUpError,
     mutate: signUp,
   } = trpc.userSignup.useMutation({
-    onSuccess: (data) => {
-      console.log({ data });
+    onSuccess: ({ token }) => {
+      authenticate(token);
       router.replace("/");
     },
   });

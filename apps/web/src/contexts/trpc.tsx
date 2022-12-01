@@ -1,5 +1,6 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { httpBatchLink } from "@trpc/client";
+import { getCookie } from "cookies-next";
 import { PropsWithChildren, useState } from "react";
 import { trpc } from "../utils/trpc";
 
@@ -8,7 +9,9 @@ const getBaseUrl = () => {
   return TRPC_URL;
 };
 
-const getAuthCookie = () => undefined;
+const getAuthCookie = () => {
+  return getCookie("weett/auth");
+};
 
 export const TRPCProvider = ({ children }: PropsWithChildren) => {
   const [queryClient] = useState(() => new QueryClient());
@@ -21,7 +24,9 @@ export const TRPCProvider = ({ children }: PropsWithChildren) => {
             const authorization = getAuthCookie();
 
             return {
-              ...(authorization ? { authorization } : {}),
+              ...(authorization
+                ? { authorization: String(authorization) }
+                : {}),
             };
           },
         }),
