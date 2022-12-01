@@ -5,9 +5,10 @@ import { TRPCProvider } from "../contexts/trpc";
 import { PropsWithChildren } from "react";
 import { hasLayout } from "../layouts/types";
 import { AuthenticationProvider } from "../contexts/authentication";
+import { MainLayout } from "../layouts/main";
 
 const App: AppType = ({ Component, pageProps }) => {
-  let Layout = ({ children }: PropsWithChildren) => <>{children}</>;
+  let Layout = MainLayout;
 
   if (hasLayout(Component)) {
     Layout = Component.Layout;

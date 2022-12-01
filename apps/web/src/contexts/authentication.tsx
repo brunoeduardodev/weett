@@ -12,14 +12,10 @@ import { z } from "zod";
 import { useCookieSync } from "../hooks/useCookieSync";
 import { JwtContent, jwtContentSchema } from "@weett/schemas/jwt";
 
-type AuthenticationUser = {
-  id: string;
-  name: string;
-  email: string;
-};
+export type UserOverview = JwtContent;
 
 type Authentication = {
-  user?: AuthenticationUser;
+  user?: UserOverview;
 
   isSigned: boolean;
   authenticate: (token: string) => void;
@@ -49,9 +45,12 @@ export const AuthenticationProvider = ({ children }: PropsWithChildren) => {
     return !!token;
   }, [token]);
 
-  const authenticate = useCallback((token: string) => {
-    setToken(token);
-  }, []);
+  const authenticate = useCallback(
+    (token: string) => {
+      setToken(token);
+    },
+    [setToken]
+  );
 
   useEffect(() => {
     if (!token) return;
@@ -62,7 +61,7 @@ export const AuthenticationProvider = ({ children }: PropsWithChildren) => {
       setToken(undefined);
       setUser(undefined);
     }
-  }, [token]);
+  }, [token, setToken]);
 
   return (
     <AuthenticationContext.Provider value={{ user, isSigned, authenticate }}>

@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { Button } from "../../components/buttons/Button";
-import { TextField } from "../../components/Inputs/TextField";
+import { TextField } from "../../components/inputs/TextField";
 import { AuthenticationLayout } from "../../layouts/authentication";
 import { WithLayout } from "../../layouts/types";
 import { zodResolver } from "@hookform/resolvers/zod";

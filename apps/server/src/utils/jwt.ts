@@ -7,7 +7,7 @@ import { JwtContent, jwtContentSchema } from "@weett/schemas/jwt";
 export const generateUserToken = (user: User) => {
   const content: JwtContent = {
     id: user.id,
-    email: user.email,
+    handle: user.handle,
     name: user.name,
   };
 
