@@ -1,6 +1,5 @@
 import { inferAsyncReturnType, initTRPC } from "@trpc/server";
 import * as trpcExpress from "@trpc/server/adapters/express";
-import SuperJSON from "superjson";
 import { prisma } from "./database/prisma";
 import { getUserFromToken } from "./utils/jwt";
 
@@ -8,7 +7,6 @@ export const createContext = async ({
   req,
   res,
 }: trpcExpress.CreateExpressContextOptions) => {
-  console.log(req.headers);
   const token = req.headers.authorization;
   if (!token)
     return {
@@ -24,9 +22,7 @@ export const createContext = async ({
 
 export type Context = inferAsyncReturnType<typeof createContext>;
 
-export const t = initTRPC.context<Context>().create({
-  transformer: SuperJSON,
-});
+export const t = initTRPC.context<Context>().create();
 
 export { appRouter } from "./routers";
 export type { AppRouter } from "./routers";
