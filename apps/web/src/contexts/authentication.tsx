@@ -16,9 +16,10 @@ export type UserOverview = JwtContent;
 
 type Authentication = {
   user?: UserOverview;
-
   isSigned: boolean;
+
   authenticate: (token: string) => void;
+  signOut: () => void;
 };
 
 export const AuthenticationContext = createContext<Authentication | null>(null);
@@ -52,8 +53,17 @@ export const AuthenticationProvider = ({ children }: PropsWithChildren) => {
     [setToken]
   );
 
+  const signOut = useCallback(() => {
+    console.log("sign out");
+    setToken(undefined);
+  }, [setToken]);
+
   useEffect(() => {
-    if (!token) return;
+    if (!token) {
+      setUser(undefined);
+      return;
+    }
+
     try {
       const user = parseToken(token);
       setUser(user);
@@ -64,7 +74,9 @@ export const AuthenticationProvider = ({ children }: PropsWithChildren) => {
   }, [token, setToken]);
 
   return (
-    <AuthenticationContext.Provider value={{ user, isSigned, authenticate }}>
+    <AuthenticationContext.Provider
+      value={{ user, isSigned, authenticate, signOut }}
+    >
       {children}
     </AuthenticationContext.Provider>
   );
