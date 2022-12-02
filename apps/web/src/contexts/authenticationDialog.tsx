@@ -1,4 +1,10 @@
-import { createContext, PropsWithChildren, useCallback, useState } from "react";
+import {
+  createContext,
+  PropsWithChildren,
+  useCallback,
+  useContext,
+  useState,
+} from "react";
 import { useDisclosure } from "../hooks/useDisclosure";
 
 type AuthenticationDialog = {
@@ -50,4 +56,14 @@ export const AuthenticationDialogProvider = ({
   );
 };
 
-export {};
+export const useAuthenticationDialog = () => {
+  const context = useContext(AuthenticationDialogContext);
+
+  if (!context) {
+    throw new Error(
+      "useAuthenticationDialog must be used within AuthenticationDialogProvider"
+    );
+  }
+
+  return context;
+};

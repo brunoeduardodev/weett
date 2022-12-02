@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useAuthentication } from "../../contexts/authentication";
+import { useAuthenticationDialog } from "../../contexts/authenticationDialog";
 import { AuthDialog } from "../AuthDialog";
 import { AccountMenu } from "./AccountMenu";
 import { AuthenticationZone } from "./AuthenticationZone";
@@ -7,7 +8,7 @@ import { SidebarItem } from "./SidebarItem";
 
 export const Sidebar = () => {
   const { user } = useAuthentication();
-  const [isOpen, setOpen] = useState(false);
+  const { showLogin, showRegister } = useAuthenticationDialog();
 
   return (
     <div className="flex flex-col min-h-screen min-w-[320px] justify-between p-4">
@@ -22,15 +23,12 @@ export const Sidebar = () => {
         </SidebarItem>
       </ul>
 
-      <AuthDialog isOpen={isOpen} onClose={() => setOpen(false)} />
+      <AuthDialog />
 
       {user ? (
         <AccountMenu user={user} />
       ) : (
-        <AuthenticationZone
-          onLogin={() => setOpen(true)}
-          onRegister={() => setOpen(true)}
-        />
+        <AuthenticationZone onLogin={showLogin} onRegister={showRegister} />
       )}
     </div>
   );
