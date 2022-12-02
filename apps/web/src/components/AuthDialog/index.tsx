@@ -1,5 +1,6 @@
 import * as Dialog from "@radix-ui/react-dialog";
 import { useAuthenticationDialog } from "../../contexts/authenticationDialog";
+import { LoginForm } from "./LoginForm";
 import { RegisterForm } from "./RegisterForm";
 
 export const AuthDialog = () => {
@@ -14,7 +15,11 @@ export const AuthDialog = () => {
           {currentMethod === "login" ? "Sign In" : "Sign Up"}
         </Dialog.Title>
 
-        <RegisterForm onClose={close} showLogin={showLogin} />
+        {currentMethod === "login" ? (
+          <LoginForm onClose={close} showRegister={showRegister} />
+        ) : (
+          <RegisterForm onClose={close} showLogin={showLogin} />
+        )}
       </Dialog.Content>
     </Dialog.Root>
   );
