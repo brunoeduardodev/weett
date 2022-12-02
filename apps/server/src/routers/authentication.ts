@@ -1,14 +1,13 @@
-import { userLoginSchema, userSignupSchema } from "@weett/schemas";
-import { login } from "../services/authentication/login";
-import { signup } from "../services/authentication/signup";
+import { loginSchema, registerSchema } from "@weett/schemas";
+import { login, register } from "../services/authentication";
 import { t } from "../trpc";
 
 export const authenticationRouter = t.router({
-  userSignup: t.procedure.input(userSignupSchema).mutation(({ input, ctx }) => {
-    return signup(input, ctx);
+  register: t.procedure.input(registerSchema).mutation(({ input, ctx }) => {
+    return register(input, ctx);
   }),
 
-  userLogin: t.procedure.input(userLoginSchema).mutation(({ input, ctx }) => {
+  login: t.procedure.input(loginSchema).mutation(({ input, ctx }) => {
     return login(input, ctx);
   }),
 });

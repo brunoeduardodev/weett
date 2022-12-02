@@ -1,8 +1,7 @@
-import { feedGet } from "../services/feed/feedGet";
-import { postCreate } from "../services/feed/postCreate";
+import { getFeed, createPost } from "../services/feed";
 import { t } from "../trpc";
 
 export const feedRouter = t.router({
-  postCreate,
-  feedGet,
+  createPost,
+  getFeed,
 });

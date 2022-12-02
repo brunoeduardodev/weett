@@ -1,12 +1,12 @@
 import bcrypt from "bcrypt";
 import { TRPCError } from "@trpc/server";
-import { UserLoginInput } from "@weett/schemas";
+import { LoginInput } from "@weett/schemas";
 import { generateUserToken } from "../../utils/jwt";
 import { sanitizeUser } from "../../views/user";
 import { Context } from "../../trpc";
 
 export const login = async (
-  { email, password }: UserLoginInput,
+  { email, password }: LoginInput,
   { prisma }: Context
 ) => {
   const user = await prisma.user.findUnique({ where: { email } });

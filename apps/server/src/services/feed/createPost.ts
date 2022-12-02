@@ -2,7 +2,7 @@ import { createPostSchema } from "@weett/schemas";
 import { ensureAuthenticated } from "../../middlewares/authorization";
 import { t } from "../../trpc";
 
-export const postCreate = t.procedure
+export const createPost = t.procedure
   .use(ensureAuthenticated)
   .input(createPostSchema)
   .mutation(async ({ ctx: { prisma, user }, input: { content, hashtags } }) => {

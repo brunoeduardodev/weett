@@ -4,10 +4,10 @@ import { isHandleAvailable } from "../handle/isHandleAvailable";
 import { generateUserToken } from "../../utils/jwt";
 import { sanitizeUser } from "../../views/user";
 import { Context } from "../../trpc";
-import { UserSignupInput } from "@weett/schemas";
+import { RegisterInput } from "@weett/schemas";
 
-export const signup = async (
-  { email, handle, name, password }: UserSignupInput,
+export const register = async (
+  { email, handle, name, password }: RegisterInput,
   { prisma }: Context
 ) => {
   const allowedHandle = await isHandleAvailable({ handle });

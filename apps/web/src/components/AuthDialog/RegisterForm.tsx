@@ -1,5 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { UserSignupInput, userSignupSchema } from "@weett/schemas";
+import { RegisterInput, registerSchema } from "@weett/schemas";
 import { useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { useAuthentication } from "../../contexts/authentication";
@@ -16,10 +16,10 @@ type Props = {
 export const RegisterForm = ({ onClose, showLogin }: Props) => {
   const {
     register,
-    formState: { errors, isDirty },
+    formState: { errors },
     handleSubmit,
-  } = useForm<UserSignupInput>({
-    resolver: zodResolver(userSignupSchema),
+  } = useForm<RegisterInput>({
+    resolver: zodResolver(registerSchema),
   });
 
   const { authenticate } = useAuthentication();
@@ -28,7 +28,7 @@ export const RegisterForm = ({ onClose, showLogin }: Props) => {
     isLoading,
     error: signUpError,
     mutate: signUp,
-  } = trpc.userSignup.useMutation({
+  } = trpc.authentication.register.useMutation({
     onSuccess: ({ token }) => {
       authenticate(token);
       onClose();
@@ -36,7 +36,7 @@ export const RegisterForm = ({ onClose, showLogin }: Props) => {
   });
 
   const handleRegister = useCallback(
-    (data: UserSignupInput) => {
+    (data: RegisterInput) => {
       signUp(data);
     },
     [signUp]
