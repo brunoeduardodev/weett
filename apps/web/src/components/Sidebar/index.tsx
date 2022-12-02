@@ -1,8 +1,8 @@
-import Link from "next/link";
 import { useState } from "react";
 import { useAuthentication } from "../../contexts/authentication";
 import { AuthDialog } from "../AuthDialog";
-import { Profile } from "./Profile";
+import { AccountMenu } from "./AccountMenu";
+import { AuthenticationZone } from "./AuthenticationZone";
 import { SidebarItem } from "./SidebarItem";
 
 export const Sidebar = () => {
@@ -25,22 +25,12 @@ export const Sidebar = () => {
       <AuthDialog isOpen={isOpen} onClose={() => setOpen(false)} />
 
       {user ? (
-        <Profile user={user} />
+        <AccountMenu user={user} />
       ) : (
-        <div className="flex flex-col gap-2">
-          <button
-            onClick={() => setOpen(true)}
-            className="bg-blue-500 text-center text-white rounded-full px-4 py-2"
-          >
-            Login
-          </button>
-          <button
-            onClick={() => setOpen(true)}
-            className="bg-blue-500 text-center text-white rounded-full px-4 py-2"
-          >
-            Sign Up
-          </button>
-        </div>
+        <AuthenticationZone
+          onLogin={() => setOpen(true)}
+          onRegister={() => setOpen(true)}
+        />
       )}
     </div>
   );
