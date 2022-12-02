@@ -14,7 +14,7 @@ export const AuthDialog = () => {
           {currentMethod === "login" ? "Sign In" : "Sign Up"}
         </Dialog.Title>
 
-        <RegisterForm onClose={close} />
+        <RegisterForm onClose={close} showLogin={showLogin} />
       </Dialog.Content>
     </Dialog.Root>
   );

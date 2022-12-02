@@ -1,18 +1,19 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { UserSignupInput, userSignupSchema } from "@weett/schemas";
-import { useRouter } from "next/router";
 import { useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { useAuthentication } from "../../contexts/authentication";
 import { trpc } from "../../utils/trpc";
 import { Button } from "../buttons/Button";
+import { TextButton } from "../buttons/TextButton";
 import { TextField } from "../inputs/TextField";
 
 type Props = {
   onClose: () => void;
+  showLogin: () => void;
 };
 
-export const RegisterForm = ({ onClose }: Props) => {
+export const RegisterForm = ({ onClose, showLogin }: Props) => {
   const {
     register,
     formState: { errors, isDirty },
@@ -83,6 +84,11 @@ export const RegisterForm = ({ onClose }: Props) => {
       <Button isLoading={isLoading} variant="primary">
         Register
       </Button>
+
+      <p className="flex gap-2">
+        Already have an account?{" "}
+        <TextButton onClick={showLogin}>Sign In</TextButton>
+      </p>
 
       {signUpError && (
         <p className="text-red-500 font-bold text-sm">{signUpError.message}</p>
