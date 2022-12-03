@@ -27,9 +27,7 @@ export const AccountMenu = ({ user }: Props) => {
 
       <Menu.Portal>
         <Menu.Content>
-          <Menu.Item onSelect={() => router.push("/profile")}>
-            Profile
-          </Menu.Item>
+          <Menu.Item onSelect={() => router.push("/me")}>Profile</Menu.Item>
           <Menu.Item onSelect={signOut}>Sign out</Menu.Item>
         </Menu.Content>
       </Menu.Portal>
