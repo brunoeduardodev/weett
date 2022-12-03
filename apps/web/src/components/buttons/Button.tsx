@@ -15,12 +15,12 @@ type Props = {
 >;
 
 export const Button = forwardRef<HTMLButtonElement, Props>(
-  ({ children, variant, disabled, isLoading, ...props }, ref) => {
+  ({ children, variant, disabled, isLoading, className, ...props }, ref) => {
     return (
       <button
         ref={ref}
         disabled={disabled || isLoading}
-        className="flex justify-center bg-blue-600 disabled:bg-blue-500 disabled:pointer-events-none hover:bg-blue-700 active:bg-blue-800 text-white transition-colors ease-in-out duration-300 uppercase py-3 px-6 font-bold rounded-lg min-w-[200px]"
+        className={`flex justify-center bg-blue-600 disabled:bg-blue-500 disabled:pointer-events-none hover:bg-blue-700 active:bg-blue-800 text-white transition-colors ease-in-out duration-300 uppercase py-3 px-6 font-bold rounded-lg min-w-[200px] ${className}`}
         {...props}
       >
         {isLoading ? (

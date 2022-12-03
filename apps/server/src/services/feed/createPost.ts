@@ -5,7 +5,9 @@ import { t } from "../../trpc";
 export const createPost = t.procedure
   .use(ensureAuthenticated)
   .input(createPostSchema)
-  .mutation(async ({ ctx: { prisma, user }, input: { content, hashtags } }) => {
+  .mutation(async ({ ctx: { prisma, user }, input: { content } }) => {
+    const hashtags: string[] = [];
+
     const post = await prisma.weet.create({
       data: {
         content,
