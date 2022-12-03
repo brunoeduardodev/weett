@@ -11,7 +11,7 @@ export const Sidebar = () => {
   const { showLogin, showRegister } = useAuthenticationDialog();
 
   return (
-    <div className="flex flex-col min-h-screen min-w-[320px] justify-between p-4">
+    <div className="flex flex-col h-screen fixed w-[320px] justify-between p-4">
       <ul className="flex flex-col gap-2 items-start">
         <h1 className="px-4 font-bold text-xl mb-6">Something Cool</h1>
 
