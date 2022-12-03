@@ -1,5 +1,5 @@
 import { getFeedSchema } from "@weett/schemas";
-import { t } from "../../trpc";
+import { t } from "../..";
 
 export const getFeed = t.procedure
   .input(getFeedSchema)

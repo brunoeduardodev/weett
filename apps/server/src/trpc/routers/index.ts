@@ -1,4 +1,4 @@
-import { t } from "../trpc";
+import { t } from "..";
 import { authenticationRouter } from "./authentication";
 import { feedRouter } from "./feed";
 import { healthRouter } from "./health";

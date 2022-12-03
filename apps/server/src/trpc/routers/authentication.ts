@@ -1,6 +1,6 @@
 import { loginSchema, registerSchema } from "@weett/schemas";
 import { login, register } from "../services/authentication";
-import { t } from "../trpc";
+import { t } from "..";
 
 export const authenticationRouter = t.router({
   register: t.procedure.input(registerSchema).mutation(({ input, ctx }) => {

@@ -1,8 +1,8 @@
 import SuperJSON from "superjson";
 import { inferAsyncReturnType, initTRPC } from "@trpc/server";
 import * as trpcExpress from "@trpc/server/adapters/express";
-import { prisma } from "./database/prisma";
-import { getUserFromToken } from "./utils/jwt";
+import { prisma } from "../database/prisma";
+import { getUserFromToken } from "../utils/jwt";
 
 export const createContext = async ({
   req,

@@ -1,6 +1,6 @@
 import { createPostSchema } from "@weett/schemas";
 import { ensureAuthenticated } from "../../middlewares/authorization";
-import { t } from "../../trpc";
+import { t } from "../..";
 
 export const createPost = t.procedure
   .use(ensureAuthenticated)

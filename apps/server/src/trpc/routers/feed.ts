@@ -1,5 +1,5 @@
 import { getFeed, createPost } from "../services/feed";
-import { t } from "../trpc";
+import { t } from "..";
 
 export const feedRouter = t.router({
   createPost,

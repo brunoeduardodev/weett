@@ -1,4 +1,4 @@
-import { prisma } from "../../database/prisma";
+import { prisma } from "../../../database/prisma";
 import { isHandleAvailableInput } from "@weett/schemas";
 
 export const isHandleAvailable = async ({ handle }: isHandleAvailableInput) => {

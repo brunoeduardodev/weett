@@ -1,5 +1,5 @@
 import { TRPCError } from "@trpc/server";
-import { t } from "../trpc";
+import { t } from "..";
 
 export const ensureAuthenticated = t.middleware(async ({ ctx, next }) => {
   if (!ctx.user) {
