@@ -1,8 +1,7 @@
 import { NextPage } from "next";
-import { WithLayout } from "../layouts/types";
 import { trpc } from "../utils/trpc";
 
-const Me: WithLayout<NextPage> = () => {
+const Me: NextPage = () => {
   const { data, isLoading, error } = trpc.user.me.useQuery();
 
   if (isLoading) {
@@ -19,7 +18,5 @@ const Me: WithLayout<NextPage> = () => {
     </>
   );
 };
-
-Me.Layout = ({ children }) => <>{children}</>;
 
 export default Me;
