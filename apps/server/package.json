@@ -24,6 +24,7 @@
     "express": "^4.18.2",
     "jsonwebtoken": "^8.5.1",
     "prisma": "^4.6.1",
+    "superjson": "^1.11.0",
     "zod": "^3.19.1"
   }
 }

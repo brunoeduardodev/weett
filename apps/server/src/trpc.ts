@@ -1,3 +1,4 @@
+import SuperJSON from "superjson";
 import { inferAsyncReturnType, initTRPC } from "@trpc/server";
 import * as trpcExpress from "@trpc/server/adapters/express";
 import { prisma } from "./database/prisma";
@@ -22,7 +23,7 @@ export const createContext = async ({
 
 export type Context = inferAsyncReturnType<typeof createContext>;
 
-export const t = initTRPC.context<Context>().create();
+export const t = initTRPC.context<Context>().create({ transformer: SuperJSON });
 
 export { appRouter } from "./routers";
 export type { AppRouter } from "./routers";

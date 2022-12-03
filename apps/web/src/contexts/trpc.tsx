@@ -3,6 +3,7 @@ import { httpBatchLink } from "@trpc/client";
 import { getCookie } from "cookies-next";
 import { PropsWithChildren, useState } from "react";
 import { trpc } from "../utils/trpc";
+import SuperJSON from "superjson";
 
 const getBaseUrl = () => {
   const TRPC_URL = process.env.NEXT_PUBLIC_TRPC_URL || "";
@@ -17,6 +18,7 @@ export const TRPCProvider = ({ children }: PropsWithChildren) => {
   const [queryClient] = useState(() => new QueryClient());
   const [trpcClient] = useState(() =>
     trpc.createClient({
+      transformer: SuperJSON,
       links: [
         httpBatchLink({
           url: getBaseUrl(),

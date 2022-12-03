@@ -28,6 +28,7 @@ importers:
       jsonwebtoken: ^8.5.1
       nodemon: ^2.0.20
       prisma: ^4.6.1
+      superjson: ^1.11.0
       tsconfig: workspace:*
       zod: ^3.19.1
     dependencies:
@@ -41,6 +42,7 @@ importers:
       express: 4.18.2
       jsonwebtoken: 8.5.1
       prisma: 4.6.1
+      superjson: 1.11.0
       zod: 3.19.1
     devDependencies:
       '@types/express': 4.17.14
@@ -55,6 +57,7 @@ importers:
       '@hookform/resolvers': ^2.9.10
       '@radix-ui/react-dialog': ^1.0.2
       '@radix-ui/react-dropdown-menu': ^2.0.1
+      '@radix-ui/react-icons': ^1.1.1
       '@tanstack/react-query': ^4.18.0
       '@trpc/client': ^10.4.1
       '@trpc/react-query': ^10.4.1
@@ -77,6 +80,7 @@ importers:
       react: 18.2.0
       react-dom: 18.2.0
       react-hook-form: ^7.39.7
+      superjson: ^1.11.0
       tailwindcss: ^3.2.4
       tsconfig: workspace:*
       typescript: ^4.5.3
@@ -86,6 +90,7 @@ importers:
       '@hookform/resolvers': 2.9.10_react-hook-form@7.39.7
       '@radix-ui/react-dialog': 1.0.2_2zx2umvpluuhvlq44va5bta2da
       '@radix-ui/react-dropdown-menu': 2.0.1_2zx2umvpluuhvlq44va5bta2da
+      '@radix-ui/react-icons': 1.1.1_react@18.2.0
       '@tanstack/react-query': 4.18.0_biqbaboplfbrettd7655fr4n2y
       '@trpc/client': 10.4.1_@trpc+server@10.4.1
       '@trpc/react-query': 10.4.1_vfg2wewkjrohb7a47nwqf7fxxi
@@ -98,6 +103,7 @@ importers:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       react-hook-form: 7.39.7_react@18.2.0
+      superjson: 1.11.0
       ui: link:../../packages/ui
       zod: 3.19.1
     devDependencies:
@@ -788,6 +794,14 @@ packages:
       '@radix-ui/react-use-callback-ref': 1.0.0_react@18.2.0
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
+    dev: false
+
+  /@radix-ui/react-icons/1.1.1_react@18.2.0:
+    resolution: {integrity: sha512-xc3wQC59rsFylVbSusQCrrM+6695ppF730Q6yqzhRdqDcRNWIm2R6ngpzBoSOQMcwnq4p805F+Gr7xo4fmtN1A==}
+    peerDependencies:
+      react: ^16.x || ^17.x || ^18.x
+    dependencies:
+      react: 18.2.0
     dev: false
 
   /@radix-ui/react-id/1.0.0_react@18.2.0:
@@ -1602,6 +1616,13 @@ packages:
       '@types/cookie': 0.4.1
       '@types/node': 16.18.4
       cookie: 0.4.2
+    dev: false
+
+  /copy-anything/3.0.3:
+    resolution: {integrity: sha512-fpW2W/BqEzqPp29QS+MwwfisHCQZtiduTe/m8idFo0xbti9fIZ2WVhAsCv4ggFVH3AgCkVdpoOCtQC6gBrdhjw==}
+    engines: {node: '>=12.13'}
+    dependencies:
+      is-what: 4.1.8
     dev: false
 
   /core-js-pure/3.26.1:
@@ -2633,6 +2654,11 @@ packages:
     dependencies:
       call-bind: 1.0.2
 
+  /is-what/4.1.8:
+    resolution: {integrity: sha512-yq8gMao5upkPoGEU9LsB2P+K3Kt8Q3fQFCGyNCWOAnJAMzEXVV9drYb0TXr42TTliLLhKIBvulgAXgtLLnwzGA==}
+    engines: {node: '>=12.13'}
+    dev: false
+
   /isexe/2.0.0:
     resolution: {integrity: sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==}
 
@@ -3646,6 +3672,13 @@ packages:
       '@babel/core': 7.20.5
       client-only: 0.0.1
       react: 18.2.0
+    dev: false
+
+  /superjson/1.11.0:
+    resolution: {integrity: sha512-6PfAg1FKhqkwWvPb2uXhH4MkMttdc17eJ91+Aoz4s1XUEDZFmLfFx/xVA3wgkPxAGy5dpozgGdK6V/n20Wj9yg==}
+    engines: {node: '>=10'}
+    dependencies:
+      copy-anything: 3.0.3
     dev: false
 
   /supports-color/5.5.0:
