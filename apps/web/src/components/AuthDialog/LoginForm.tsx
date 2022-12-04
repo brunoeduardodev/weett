@@ -70,7 +70,7 @@ export const LoginForm = ({ onClose, showRegister }: Props) => {
       </Button>
 
       <p className="flex gap-2">
-        Doesn't have an account?
+        Doesn&apos;t have an account?
         <TextButton onClick={showRegister}>Register</TextButton>
       </p>
 
