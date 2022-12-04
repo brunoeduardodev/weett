@@ -32,3 +32,5 @@ export const TextField = React.forwardRef<HTMLInputElement, Props>(
     );
   }
 );
+
+TextField.displayName = "TextField";
