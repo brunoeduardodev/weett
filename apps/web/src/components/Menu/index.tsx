@@ -26,6 +26,8 @@ export const Content = forwardRef<
   );
 });
 
+Content.displayName = "MenuContent";
+
 export const Item = forwardRef<
   ComponentRef<typeof DropdownMenu.DropdownMenuItem>,
   DropdownMenuItemProps
@@ -40,3 +42,5 @@ export const Item = forwardRef<
     </DropdownMenu.DropdownMenuItem>
   );
 });
+
+Item.displayName = "MenuItem";
