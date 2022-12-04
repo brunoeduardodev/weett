@@ -3,6 +3,7 @@ import { inferAsyncReturnType, initTRPC } from "@trpc/server";
 import * as trpcExpress from "@trpc/server/adapters/express";
 import { prisma } from "@/database/prisma";
 import { getUserFromToken } from "@/utils/jwt";
+import { User } from "@prisma/client";
 
 export const createContext = async ({
   req,
@@ -22,6 +23,7 @@ export const createContext = async ({
 };
 
 export type Context = inferAsyncReturnType<typeof createContext>;
+export type AuthorizedContext = Context & { user: User };
 
 export const t = initTRPC.context<Context>().create({ transformer: SuperJSON });
 
