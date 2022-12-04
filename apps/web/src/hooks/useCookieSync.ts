@@ -4,8 +4,7 @@ import {
   getCookie,
   setCookie,
 } from "cookies-next";
-import { OptionsType } from "cookies-next/lib/types";
-import { startTransition, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { type ZodSchema } from "zod";
 import dayjs, { ManipulateType } from "dayjs";
 

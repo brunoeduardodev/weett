@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { useAuthentication } from "../../contexts/authentication";
+import { useAuthentication } from "@/contexts/authentication";
 import * as Menu from "../Menu";
 
 type Props = {

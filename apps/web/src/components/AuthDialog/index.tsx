@@ -1,5 +1,5 @@
 import * as Dialog from "@radix-ui/react-dialog";
-import { useAuthenticationDialog } from "../../contexts/authenticationDialog";
+import { useAuthenticationDialog } from "@/contexts/authenticationDialog";
 import { LoginForm } from "./LoginForm";
 import { RegisterForm } from "./RegisterForm";
 

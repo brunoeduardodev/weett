@@ -1,6 +1,5 @@
-import { useState } from "react";
-import { useAuthentication } from "../../contexts/authentication";
-import { useAuthenticationDialog } from "../../contexts/authenticationDialog";
+import { useAuthentication } from "@/contexts/authentication";
+import { useAuthenticationDialog } from "@/contexts/authenticationDialog";
 import { AuthDialog } from "../AuthDialog";
 import { AccountMenu } from "./AccountMenu";
 import { AuthenticationZone } from "./AuthenticationZone";

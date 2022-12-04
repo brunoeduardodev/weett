@@ -5,7 +5,7 @@ import {
   useContext,
   useState,
 } from "react";
-import { useDisclosure } from "../hooks/useDisclosure";
+import { useDisclosure } from "@/hooks/useDisclosure";
 
 type AuthenticationDialog = {
   isOpen: boolean;

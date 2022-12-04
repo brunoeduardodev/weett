@@ -1,11 +1,11 @@
-import "../styles/globals.css";
+import "@/styles/globals.css";
 
 import { AppType } from "next/app";
-import { TRPCProvider } from "../contexts/trpc";
-import { hasLayout } from "../layouts/types";
-import { AuthenticationProvider } from "../contexts/authentication";
-import { MainLayout } from "../layouts/main";
-import { AuthenticationDialogProvider } from "../contexts/authenticationDialog";
+import { TRPCProvider } from "@/contexts/trpc";
+import { hasLayout } from "@/layouts/types";
+import { MainLayout } from "@/layouts/main";
+import { AuthenticationProvider } from "@/contexts/authentication";
+import { AuthenticationDialogProvider } from "@/contexts/authenticationDialog";
 
 const App: AppType = ({ Component, pageProps }) => {
   let Layout = MainLayout;

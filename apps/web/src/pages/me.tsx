@@ -1,5 +1,5 @@
 import { NextPage } from "next";
-import { trpc } from "../utils/trpc";
+import { trpc } from "@/utils/trpc";
 
 const Me: NextPage = () => {
   const { data, isLoading, error } = trpc.user.me.useQuery();

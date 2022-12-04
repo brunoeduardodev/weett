@@ -9,7 +9,7 @@ import {
 } from "react";
 import jwt from "jsonwebtoken";
 import { z } from "zod";
-import { useCookieSync } from "../hooks/useCookieSync";
+import { useCookieSync } from "@/hooks/useCookieSync";
 import { JwtContent, jwtContentSchema } from "@weett/schemas/jwt";
 
 export type UserOverview = JwtContent;

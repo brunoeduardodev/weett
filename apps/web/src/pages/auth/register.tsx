@@ -1,15 +1,15 @@
 import { useForm } from "react-hook-form";
-import { Button } from "../../components/buttons/Button";
-import { TextField } from "../../components/inputs/TextField";
-import { AuthenticationLayout } from "../../layouts/authentication";
-import { WithLayout } from "../../layouts/types";
+import { Button } from "@/components/buttons/Button";
+import { TextField } from "@/components/inputs/TextField";
+import { AuthenticationLayout } from "@/layouts/authentication";
+import { WithLayout } from "@/layouts/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useCallback } from "react";
-import { trpc } from "../../utils/trpc";
+import { trpc } from "@/utils/trpc";
 import { useRouter } from "next/router";
 import { NextPage } from "next";
-import { UserSignupInput, userSignupSchema } from "@weett/schemas";
-import { useAuthentication } from "../../contexts/authentication";
+import { RegisterInput, registerSchema } from "@weett/schemas";
+import { useAuthentication } from "@/contexts/authentication";
 
 const RegisterPage: WithLayout<NextPage> = () => {
   const {

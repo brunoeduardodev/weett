@@ -1,6 +1,4 @@
-import { Button } from "ui";
-import { Feed } from "../components/Feed";
-import { trpc } from "../utils/trpc";
+import { Feed } from "@/components/Feed";
 
 export default function Web() {
   return (
