@@ -1,5 +1,5 @@
-import { ensureAuthenticated } from "../../middlewares/authorization";
-import { t } from "../..";
+import { ensureAuthenticated } from "@/trpc/middlewares/authorization";
+import { t } from "@/trpc";
 
 export const me = t.procedure
   .use(ensureAuthenticated)
