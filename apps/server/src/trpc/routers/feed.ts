@@ -1,6 +1,9 @@
-import { getFeed } from "../services/feed";
 import { t } from "..";
+import { getFeedSchema } from "@weett/schemas";
+import { get } from "../services/feed";
 
 export const feedRouter = t.router({
-  getFeed,
+  get: t.procedure
+    .input(getFeedSchema)
+    .query(({ input, ctx }) => get(input, ctx)),
 });
