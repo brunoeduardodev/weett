@@ -14,7 +14,7 @@ export const NewTweet = () => {
 
   const { mutate: createPost, isLoading } = trpc.post.create.useMutation({
     onSuccess: (post) => {
-      utils.feed.getFeed.invalidate();
+      utils.feed.get.invalidate();
       return;
     },
   });
