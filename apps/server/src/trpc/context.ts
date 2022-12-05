@@ -1,6 +1,6 @@
 import * as trpcExpress from "@trpc/server/adapters/express";
-import { prisma } from "@/database/prisma";
-import { getUserFromToken } from "@/utils/jwt";
+import { prisma } from "../database/prisma";
+import { getUserFromToken } from "../utils/jwt";
 import { User } from "@prisma/client";
 import { inferAsyncReturnType } from "@trpc/server";
 

@@ -1,9 +1,9 @@
 import bcrypt from "bcrypt";
 import { TRPCError } from "@trpc/server";
 import { isHandleAvailable } from "../handle/isHandleAvailable";
-import { generateUserToken } from "@/utils/jwt";
-import { sanitizeUser } from "@/views/user";
-import { Context } from "@/trpc";
+import { generateUserToken } from "../../../utils/jwt";
+import { sanitizeUser } from "../../../views/user";
+import { Context } from "../../../trpc";
 import { RegisterInput } from "@weett/schemas";
 
 export const register = async (

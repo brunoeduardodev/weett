@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 import { User } from "@prisma/client";
 import { TRPCError } from "@trpc/server";
-import { prisma } from "@/database/prisma";
+import { prisma } from "../database/prisma";
 import { JwtContent, jwtContentSchema } from "@weett/schemas/jwt";
 
 export const generateUserToken = (user: User) => {

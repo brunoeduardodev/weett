@@ -1,5 +1,5 @@
 import { CreatePostInput } from "@weett/schemas";
-import { AuthenticatedContext } from "@/trpc/context";
+import { AuthenticatedContext } from "../../../trpc/context";
 
 export const createPost = async (
   { content }: CreatePostInput,
