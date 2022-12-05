@@ -35,6 +35,7 @@
     "@types/react": "^18.0.22",
     "@types/react-dom": "^18.0.7",
     "@weett/server": "workspace:*",
+    "@weett/tailwind": "workspace:*",
     "autoprefixer": "^10.4.13",
     "eslint": "7.32.0",
     "eslint-config-custom": "workspace:*",
