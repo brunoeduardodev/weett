@@ -8,7 +8,7 @@ import { inferRouterOutputs } from "@trpc/server";
 import { AppRouter } from "@weett/server";
 import relativeTime from "dayjs/plugin/relativeTime";
 import dayjs from "dayjs";
-import { IconButton } from "../../buttons/IconButton";
+import { IconButton } from "ui/buttons/IconButton";
 
 type Props = {
   post: inferRouterOutputs<AppRouter>["feed"]["getFeed"]["posts"][0];

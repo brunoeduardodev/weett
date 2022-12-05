@@ -4,9 +4,7 @@ import { useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { useAuthentication } from "@/contexts/authentication";
 import { trpc } from "@/utils/trpc";
-import { Button } from "../buttons/Button";
-import { TextButton } from "../buttons/TextButton";
-import { TextField } from "../inputs/TextField";
+import { Button, TextButton, TextField } from "@weett/ui";
 
 type Props = {
   onClose: () => void;

@@ -3,7 +3,7 @@ import { CreatePostInput, createPostSchema } from "@weett/schemas";
 import { useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { trpc } from "../../utils/trpc";
-import { Button } from "../buttons/Button";
+import { Button } from "@weett/ui";
 
 export const NewTweet = () => {
   const { register, reset, handleSubmit } = useForm<CreatePostInput>({
