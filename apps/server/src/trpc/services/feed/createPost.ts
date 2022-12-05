@@ -1,11 +1,10 @@
 import { CreatePostInput } from "@weett/schemas";
-import { AuthorizedService } from "@/trpc/types";
-import { Weet } from "@prisma/client";
+import { AuthenticatedContext } from "@/trpc/context";
 
-export const createPost: AuthorizedService<
-  CreatePostInput,
-  Promise<Weet>
-> = async ({ ctx: { prisma, user }, input: { content } }) => {
+export const createPost = async (
+  { content }: CreatePostInput,
+  { prisma, user }: AuthenticatedContext
+) => {
   const hashtags: string[] = [];
 
   const post = await prisma.weet.create({

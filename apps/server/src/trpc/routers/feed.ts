@@ -7,7 +7,7 @@ export const feedRouter = t.router({
   createPost: t.procedure
     .input(createPostSchema)
     .use(ensureAuthenticated)
-    .mutation(createPost),
+    .mutation(({ input, ctx }) => createPost(input, ctx)),
 
   getFeed,
 });

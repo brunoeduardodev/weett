@@ -22,4 +22,4 @@ export const createContext = async ({
 };
 
 export type Context = inferAsyncReturnType<typeof createContext>;
-export type AuthorizedContext = Context & { user: User };
+export type AuthenticatedContext = Context & { user: User };
