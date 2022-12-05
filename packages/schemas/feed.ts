@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 export const createPostSchema = z.object({
-  content: z.string().max(255),
+  content: z.string().min(2).max(255),
 });
 
 export type CreatePostInput = z.infer<typeof createPostSchema>;
