@@ -27,17 +27,19 @@ export const NewTweet = () => {
   return (
     <form
       onSubmit={handleSubmit(publish)}
-      className="flex flex-col p-2 divide-y-2 divide-gray-50 space-y-4"
+      className="flex flex-col divide-y-2 divide-gray-50 space-y-4 border-gray-50 border-2"
     >
       <textarea
-        className="bg-white p-4"
+        className="bg-white p-4 placeholder:text-xl outline-none"
         {...register("content")}
-        placeholder="New Tweet"
+        placeholder="What's happening?"
       />
 
-      <Button variant="primary" className="self-end" isLoading={isLoading}>
-        Tweet
-      </Button>
+      <div className="flex justify-end w-full p-2">
+        <Button variant="primary" className="self-end" isLoading={isLoading}>
+          Tweet
+        </Button>
+      </div>
     </form>
   );
 };
