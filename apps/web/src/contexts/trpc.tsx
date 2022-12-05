@@ -4,9 +4,10 @@ import { getCookie } from "cookies-next";
 import { PropsWithChildren, useState } from "react";
 import { trpc } from "../utils/trpc";
 import SuperJSON from "superjson";
+import { envs } from "@/config/env";
 
 const getBaseUrl = () => {
-  const TRPC_URL = process.env.NEXT_PUBLIC_TRPC_URL || "";
+  const TRPC_URL = envs.trpcUrl;
   return TRPC_URL;
 };
 
