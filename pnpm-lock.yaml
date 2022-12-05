@@ -157,9 +157,12 @@ importers:
 
   packages/tailwind:
     specifiers:
+      '@weett/ui': workspace:^0.0.0
       autoprefixer: ^10.4.13
       postcss: ^8.4.19
       tailwindcss: ^3.2.4
+    dependencies:
+      '@weett/ui': link:../ui
     devDependencies:
       autoprefixer: 10.4.13_postcss@8.4.19
       postcss: 8.4.19
@@ -174,6 +177,7 @@ importers:
       '@types/react-dom': ^18.0.6
       '@weett/tailwind': workspace:*
       autoprefixer: ^10.4.13
+      class-variance-authority: ^0.4.0
       eslint: ^7.32.0
       eslint-config-custom: workspace:*
       postcss: ^8.4.19
@@ -181,6 +185,8 @@ importers:
       tailwindcss: ^3.2.4
       tsconfig: workspace:*
       typescript: ^4.5.2
+    dependencies:
+      class-variance-authority: 0.4.0_typescript@4.9.3
     devDependencies:
       '@types/react': 18.0.25
       '@types/react-dom': 18.0.9
@@ -1585,6 +1591,17 @@ packages:
   /chownr/2.0.0:
     resolution: {integrity: sha512-bIomtDF5KGpdogkLd9VspvFzk9KfpyyGlS8YFVZl7TGPBHL5snIOnxeshwVgPteQ9b4Eydl+pVbIyE1DcvCWgQ==}
     engines: {node: '>=10'}
+    dev: false
+
+  /class-variance-authority/0.4.0_typescript@4.9.3:
+    resolution: {integrity: sha512-74enNN8O9ZNieycac/y8FxqgyzZhZbxmCitAtAeUrLPlxjSd5zA7LfpprmxEcOmQBnaGs5hYhiSGnJ0mqrtBLQ==}
+    peerDependencies:
+      typescript: '>= 4.5.5 < 5'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+    dependencies:
+      typescript: 4.9.3
     dev: false
 
   /client-only/0.0.1:
@@ -4013,7 +4030,6 @@ packages:
     resolution: {integrity: sha512-CIfGzTelbKNEnLpLdGFgdyKhG23CKdKgQPOBc+OUNrkJ2vr+KSzsSV5kq5iWhEQbok+quxgGzrAtGWCyU7tHnA==}
     engines: {node: '>=4.2.0'}
     hasBin: true
-    dev: true
 
   /unbox-primitive/1.0.2:
     resolution: {integrity: sha512-61pPlCD9h51VoreyJ0BReideM3MDKMKnh6+V9L08331ipq6Q8OFXZYiqP6n/tbHx4s5I9uRhcye6BrbkizkBDw==}

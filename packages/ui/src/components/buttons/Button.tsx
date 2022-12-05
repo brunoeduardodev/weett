@@ -1,3 +1,4 @@
+import { cva, VariantProps } from "class-variance-authority";
 import {
   ButtonHTMLAttributes,
   DetailedHTMLProps,
@@ -5,22 +6,64 @@ import {
   ReactNode,
 } from "react";
 
-type Props = {
-  children: ReactNode;
-  isLoading?: boolean;
-  variant: "primary" | "secondary";
-} & DetailedHTMLProps<
+const buttonStyles = cva(
+  [`flex justify-center transition-colors ease-in-out duration-300`],
+  {
+    variants: {
+      intent: {
+        primary: `text-white bg-blue-500 disabled:bg-blue-400 hover:bg-blue-600 active:bg-blue-700`,
+        secondary: `text-blue-500 bg-blue-500 bg-opacity-0 disabled:text-opacity-10 hover:bg-opacity-10 active:bg-opacity-20`,
+      },
+      size: {
+        small: `px-2 py-1 text-sm`,
+        medium: `px-4 py-2 text-md`,
+        large: `px-6 py-3 text-lg`,
+      },
+      rounded: {
+        none: ``,
+        sm: `rounded-sm`,
+        md: `rounded-md`,
+        full: `rounded-full`,
+      },
+    },
+    defaultVariants: {
+      intent: "primary",
+      rounded: "md",
+      size: "medium",
+    },
+  }
+);
+
+type BaseButtonProps = DetailedHTMLProps<
   ButtonHTMLAttributes<HTMLButtonElement>,
   HTMLButtonElement
 >;
+type StyleProps = VariantProps<typeof buttonStyles>;
+
+type Props = {
+  isLoading?: boolean;
+} & BaseButtonProps &
+  StyleProps;
 
 export const Button = forwardRef<HTMLButtonElement, Props>(
-  ({ children, variant, disabled, isLoading, className, ...props }, ref) => {
+  (
+    {
+      children,
+      intent,
+      size,
+      rounded,
+      disabled,
+      isLoading,
+      className,
+      ...props
+    },
+    ref
+  ) => {
     return (
       <button
         ref={ref}
         disabled={disabled || isLoading}
-        className={`flex justify-center bg-blue-600 disabled:bg-blue-500 disabled:pointer-events-none hover:bg-blue-700 active:bg-blue-800 text-white transition-colors ease-in-out duration-300 uppercase py-3 px-6 font-bold rounded-lg min-w-[200px] ${className}`}
+        className={buttonStyles({ intent, size, rounded })}
         {...props}
       >
         {isLoading ? (

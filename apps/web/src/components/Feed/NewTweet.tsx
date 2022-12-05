@@ -36,7 +36,7 @@ export const NewTweet = () => {
       />
 
       <div className="flex justify-end w-full p-2">
-        <Button variant="primary" className="self-end" isLoading={isLoading}>
+        <Button intent={"primary"} rounded={"full"} isLoading={isLoading}>
           Tweet
         </Button>
       </div>
