@@ -1,7 +1,7 @@
 import { GetFeedInput } from "@weett/schemas";
 import { Context } from "../../context";
 
-export const get = async (
+export const getFeed = async (
   { limit, cursor }: GetFeedInput,
   { prisma }: Context
 ) => {
