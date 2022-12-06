@@ -32,6 +32,10 @@ export const Profile = () => {
         onEditProfile={console.log}
         description={"brazilian fullstack developer"}
       />
+
+      <div className="flex w-full h-[1px] bg-gray-400 my-3" />
+
+      <FeedContent authorId={data.id} />
     </main>
   );
 };
