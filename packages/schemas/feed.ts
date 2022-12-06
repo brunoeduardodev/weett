@@ -9,6 +9,7 @@ export type CreatePostInput = z.infer<typeof createPostSchema>;
 export const getFeedSchema = z.object({
   limit: z.number().max(50).default(20),
   cursor: z.string().nullish(),
+  authorId: z.string().optional(),
 });
 
 export type GetFeedInput = z.infer<typeof getFeedSchema>;

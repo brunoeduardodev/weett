@@ -2,11 +2,9 @@ import { GetFeedInput } from "@weett/schemas";
 import { Context } from "../../context";
 
 export const getFeed = async (
-  { limit, cursor }: GetFeedInput,
+  { limit, cursor, authorId }: GetFeedInput,
   { prisma }: Context
 ) => {
-  const lastWeek = new Date(new Date().getTime() - 7 * 24 * 60 * 60 * 1000);
-
   const posts = await prisma.weet.findMany({
     take: limit + 1,
     cursor: cursor ? { id: cursor } : undefined,
@@ -20,8 +18,8 @@ export const getFeed = async (
       },
     },
     where: {
-      createdAt: {
-        gt: lastWeek,
+      author: {
+        id: authorId,
       },
     },
   });

@@ -1,5 +1,6 @@
 import { trpc } from "@/utils/trpc";
 import { useRouter } from "next/router";
+import { FeedContent } from "../Feed/FeedContent";
 import { ProfileBanner } from "./ProfileBanner";
 import { ProfileHeader } from "./ProfileHeader";
 
