@@ -27,7 +27,8 @@ export const EditProfileDialog = ({ isOpen, onClose }: Props) => {
             placeholder="john@doe.com"
           />
 
-          <Button intent="primary">Edit</Button>
+          <Button intent="primary">Save Profile</Button>
+          <Button intent="secondary">Reset</Button>
         </form>
       </Dialog.Content>
     </Dialog.Root>
