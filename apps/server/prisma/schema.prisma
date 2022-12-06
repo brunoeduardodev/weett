@@ -22,7 +22,7 @@ model User {
   updatedAt DateTime @updatedAt
 
   weets   Weet[]
-  Profile Profile?
+  profile Profile?
 }
 
 model Profile {
