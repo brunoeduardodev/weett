@@ -20,7 +20,21 @@ model User {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  weets     Weet[]
+
+  weets   Weet[]
+  Profile Profile?
+}
+
+model Profile {
+  id String @id @default(cuid())
+
+  bio       String
+  avatarUrl String
+  bannerUrl String
+  website   String
+
+  user   User   @relation(fields: [userId], references: [id])
+  userId String @unique
 }
 
 model Hashtag {
