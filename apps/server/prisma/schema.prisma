@@ -12,7 +12,6 @@ datasource db {
 
 model User {
   id     String @id @default(cuid())
-  name   String
   handle String @unique
 
   email    String @unique
@@ -28,6 +27,7 @@ model User {
 model Profile {
   id String @id @default(cuid())
 
+  name      String
   bio       String?
   avatarUrl String?
   bannerUrl String?

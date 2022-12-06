@@ -30,10 +30,11 @@ export const register = async (
     data: {
       email,
       handle,
-      name,
       password: hashedPassword,
       profile: {
-        create: {},
+        create: {
+          name,
+        },
       },
     },
   });
