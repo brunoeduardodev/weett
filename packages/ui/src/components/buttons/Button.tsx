@@ -63,7 +63,7 @@ export const Button = forwardRef<HTMLButtonElement, Props>(
       <button
         ref={ref}
         disabled={disabled || isLoading}
-        className={buttonStyles({ intent, size, rounded })}
+        className={buttonStyles({ intent, size, rounded }) + " " + className}
         {...props}
       >
         {isLoading ? (

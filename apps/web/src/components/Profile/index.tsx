@@ -1,5 +1,6 @@
 import { trpc } from "@/utils/trpc";
 import { useRouter } from "next/router";
+import { ProfileBanner } from "./ProfileBanner";
 import { ProfileHeader } from "./ProfileHeader";
 
 export const Profile = () => {
@@ -15,11 +16,20 @@ export const Profile = () => {
   }
 
   return (
-    <main className="flex flex-col">
+    <main className="flex flex-col gap-2">
       <ProfileHeader
         name={data.name}
         tweetCount={89}
         onBack={() => router.back()}
+      />
+      <ProfileBanner
+        name={data.name}
+        handle={data.handle}
+        createdAt={data.createdAt}
+        followersCount={169}
+        followingCount={400}
+        onEditProfile={console.log}
+        description={"brazilian fullstack developer"}
       />
     </main>
   );
