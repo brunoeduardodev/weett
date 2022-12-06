@@ -11,7 +11,7 @@ import dayjs from "dayjs";
 import { IconButton } from "@weett/ui";
 
 type Props = {
-  post: inferRouterOutputs<AppRouter>["feed"]["getFeed"]["posts"][0];
+  post: inferRouterOutputs<AppRouter>["feed"]["get"]["posts"][0];
 };
 
 dayjs.extend(relativeTime);
@@ -27,7 +27,7 @@ export const Post = ({ post }: Props) => {
 
       <div className="flex flex-col gap-3 flex-1">
         <div className="flex items-center gap-4">
-          <h3 className="font-bold">{post.author.name}</h3>
+          <h3 className="font-bold">{post.author.profile?.name}</h3>
           <p className="text-gray-700">@{post.author.handle}</p>
           <p className="text-gray-500" title={post.createdAt.toLocaleString()}>
             {fromNow}

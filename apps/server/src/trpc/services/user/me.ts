@@ -9,7 +9,7 @@ export const me = t.procedure
         id: user.id,
       },
       include: {
-        weets: true,
+        profile: true,
       },
     });
   });

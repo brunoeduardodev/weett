@@ -14,7 +14,7 @@ export const getFeed = async (
     },
     include: {
       author: {
-        select: { id: true, name: true, handle: true },
+        select: { id: true, handle: true, profile: true },
       },
     },
     where: {
