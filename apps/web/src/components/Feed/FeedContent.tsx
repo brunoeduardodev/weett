@@ -6,7 +6,7 @@ type Props = {
   authorId?: string;
 };
 
-export const FeedContent = ({ authorId }: Props) => {
+export const FeedRenderer = ({ authorId }: Props) => {
   const { data } = trpc.feed.get.useInfiniteQuery(
     {
       limit: 20,

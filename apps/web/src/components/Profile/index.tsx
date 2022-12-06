@@ -1,6 +1,6 @@
 import { trpc } from "@/utils/trpc";
 import { useRouter } from "next/router";
-import { FeedContent } from "../Feed/FeedContent";
+import { FeedRenderer } from "../Feed/FeedContent";
 import { ProfileBanner } from "./ProfileBanner";
 import { ProfileHeader } from "./ProfileHeader";
 
@@ -35,7 +35,7 @@ export const Profile = () => {
 
       <div className="flex w-full h-[1px] bg-gray-400 my-3" />
 
-      <FeedContent authorId={data.id} />
+      <FeedRenderer authorId={data.id} />
     </main>
   );
 };

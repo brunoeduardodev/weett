@@ -1,4 +1,4 @@
-import { FeedContent } from "./FeedContent";
+import { FeedRenderer } from "./FeedContent";
 import { NewTweet } from "./NewTweet";
 
 export const Feed = () => {
@@ -7,7 +7,7 @@ export const Feed = () => {
       <h1 className="font-bold text-2xl">Feed</h1>
       <NewTweet />
 
-      <FeedContent />
+      <FeedRenderer />
     </div>
   );
 };
