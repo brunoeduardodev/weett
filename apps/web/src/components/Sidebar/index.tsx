@@ -20,6 +20,12 @@ export const Sidebar = () => {
         <SidebarItem href={"/trending"} isActive={false}>
           Trending
         </SidebarItem>
+
+        {user && (
+          <SidebarItem href={"/me"} isActive={false}>
+            Profile
+          </SidebarItem>
+        )}
       </ul>
 
       <AuthDialog />
