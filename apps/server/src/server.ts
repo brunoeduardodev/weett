@@ -25,6 +25,7 @@ app.post("/uploads/profile-picture", upload.single("file"), (req, res) => {
     return res.status(400).send("File is not an image");
   }
 
+  console.log(req.file);
   return req.file.destination;
 });
 
