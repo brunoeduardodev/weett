@@ -85,7 +85,7 @@ const RegisterPage: WithLayout<NextPage> = () => {
           {...register("password")}
         />
 
-        <Button isLoading={isLoading} variant="primary">
+        <Button isLoading={isLoading} intent="primary">
           Register
         </Button>
 

@@ -63,7 +63,7 @@ export const LoginForm = ({ onClose, showRegister }: Props) => {
         {...register("password")}
       />
 
-      <Button isLoading={isLoading} variant="primary">
+      <Button isLoading={isLoading} intent="primary">
         Login
       </Button>
 
