@@ -27,7 +27,15 @@ export const register = async (
   const hashedPassword = await bcrypt.hash(password, 12);
 
   const user = await prisma.user.create({
-    data: { email, handle, name, password: hashedPassword },
+    data: {
+      email,
+      handle,
+      name,
+      password: hashedPassword,
+      profile: {
+        create: {},
+      },
+    },
   });
 
   const token = generateUserToken(user);
