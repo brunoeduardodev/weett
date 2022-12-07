@@ -5,15 +5,21 @@ export const updateSelf = async (
   { name, bio, avatarUrl, bannerUrl }: UpdateSelfInput,
   { prisma, user }: AuthenticatedContext
 ) => {
-  const profile = await prisma.profile.update({
-    where: { id: user.id },
-    data: {
-      name,
-      bio,
-      avatarUrl,
-      bannerUrl,
-    },
-  });
+  const profile = await prisma.user
+    .update({
+      where: { id: user.id },
+      data: {
+        profile: {
+          update: {
+            name,
+            bio,
+            avatarUrl,
+            bannerUrl,
+          },
+        },
+      },
+    })
+    .catch(console.error);
 
   return profile;
 };

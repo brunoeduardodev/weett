@@ -12,6 +12,16 @@ type Props = {
 
 export const EditProfileDialog = ({ isOpen, onClose }: Props) => {
   const userQuery = trpc.user.me.useQuery();
+  const utils = trpc.useContext();
+  const updateSelfMutation = trpc.user.updateSelf.useMutation({
+    onError: (err) => {
+      console.log(err);
+    },
+    onSuccess: () => {
+      utils.user.me.invalidate();
+      onClose();
+    },
+  });
 
   const {
     register,
@@ -25,14 +35,14 @@ export const EditProfileDialog = ({ isOpen, onClose }: Props) => {
       name: userQuery.data?.profile.name,
       bio: userQuery.data?.profile.bio || "",
     });
-  }, [userQuery.data]);
+  }, [userQuery.data?.profile.name, userQuery.data?.profile.bio, reset]);
 
   useEffect(() => {
     handleReset();
   }, [handleReset]);
 
   const handleUpdate = useCallback((data: UpdateSelfInput) => {
-    console.log(data);
+    updateSelfMutation.mutate(data);
   }, []);
 
   return (
@@ -66,7 +76,9 @@ export const EditProfileDialog = ({ isOpen, onClose }: Props) => {
               {...register("bio")}
             />
 
-            <Button intent="primary">Save Profile</Button>
+            <Button intent="primary" isLoading={updateSelfMutation.isLoading}>
+              Save Profile
+            </Button>
             <Button type={"button"} intent="secondary" onClick={handleReset}>
               Reset
             </Button>
