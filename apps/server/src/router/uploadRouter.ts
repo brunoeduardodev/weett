@@ -1,9 +1,11 @@
 import path from "path";
 import multer from "multer";
 
+const uploadsFolder = path.resolve(__dirname, "../../uploads");
+
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, path.resolve(__dirname, "../../uploads"));
+    cb(null, uploadsFolder);
   },
   filename: function (req, file, cb) {
     const uniquePrefix = Date.now() + "-" + Math.round(Math.random() * 1e9);
@@ -25,5 +27,7 @@ uploadRouter.post("/profile-picture", upload.single("file"), (req, res) => {
     return res.status(400).json({ error: "File is not an image" });
   }
 
-  return res.status(200).json({ url: req.file.path });
+  return res
+    .status(200)
+    .json({ url: "http://localhost:4000/uploads/" + req.file.filename });
 });
