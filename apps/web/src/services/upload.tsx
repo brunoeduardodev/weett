@@ -13,5 +13,5 @@ export const uploadFile = (file: File, { endpoint }: UploadFileOptions) => {
   return fetch(url, {
     method: "POST",
     body: formData,
-  });
+  }).then((res) => res.json());
 };
