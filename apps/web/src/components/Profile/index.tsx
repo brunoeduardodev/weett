@@ -33,7 +33,7 @@ export const Profile = () => {
         followersCount={169}
         followingCount={400}
         onEditProfile={onOpen}
-        description={"brazilian fullstack developer"}
+        bio={data.profile.bio || ""}
       />
 
       <EditProfileDialog isOpen={isOpen} onClose={onClose} />

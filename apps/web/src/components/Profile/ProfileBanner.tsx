@@ -11,7 +11,7 @@ type Props = {
   followersCount: number;
   followingCount: number;
 
-  description: string;
+  bio: string;
   createdAt: Date;
 
   onEditProfile: () => void;
@@ -22,7 +22,7 @@ export const ProfileBanner = ({
   handle,
   followersCount,
   followingCount,
-  description,
+  bio,
   createdAt,
   bannerUrl,
   profileUrl,
@@ -47,7 +47,7 @@ export const ProfileBanner = ({
         </div>
 
         <div className="flex flex-col gap-2">
-          <p>{description}</p>
+          <p>{bio}</p>
 
           <p>Joined at {dayjs(createdAt).format("MMMM YYYY")}</p>
 
