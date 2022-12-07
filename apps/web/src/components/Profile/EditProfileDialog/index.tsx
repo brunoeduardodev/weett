@@ -2,7 +2,7 @@ import { useZodForm } from "@/hooks/useZodForm";
 import { trpc } from "@/utils/trpc";
 import * as Dialog from "@radix-ui/react-dialog";
 import { UpdateSelfInput, updateSelfSchema } from "@weett/schemas";
-import { Button, TextField } from "@weett/ui";
+import { Button, ImageField, TextField } from "@weett/ui";
 import { useCallback, useEffect } from "react";
 
 type Props = {
