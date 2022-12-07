@@ -22,12 +22,12 @@ export const Profile = () => {
   return (
     <main className="flex flex-col gap-2">
       <ProfileHeader
-        name={data.name}
+        name={data.profile.name}
         tweetCount={89}
         onBack={() => router.back()}
       />
       <ProfileBanner
-        name={data.name}
+        name={data.profile.name}
         handle={data.handle}
         createdAt={data.createdAt}
         followersCount={169}

@@ -8,7 +8,6 @@ export const generateUserToken = (user: User) => {
   const content: JwtContent = {
     id: user.id,
     handle: user.handle,
-    name: user.name,
   };
 
   const token = jwt.sign(content, process.env.JWT_SECRET!);
