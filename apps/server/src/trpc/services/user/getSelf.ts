@@ -1,4 +1,3 @@
-import { ensureAuthenticated } from "../../middlewares/authorization";
 import { AuthenticatedContext, t } from "../..";
 
 export const getSelf = async ({ user, prisma }: AuthenticatedContext) => {
