@@ -3,7 +3,7 @@ import { ImageField } from "@weett/ui";
 import { forwardRef } from "react";
 
 type Props = {
-  endpoint: "avatar" | "banner";
+  endpoint: "profile-picture" | "banner";
 
   label: string;
   id: string;
@@ -20,7 +20,7 @@ export const AutoUploadImage = forwardRef<typeof ImageField, Props>(
         return;
       }
 
-      const res = await uploadFile(file, { endpoint: "avatar" });
+      const res = await uploadFile(file, { endpoint: "profile-picture" });
       console.log({ res });
     };
 

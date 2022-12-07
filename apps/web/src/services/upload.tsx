@@ -1,7 +1,7 @@
 import { envs } from "@/config/env";
 
 type UploadFileOptions = {
-  endpoint: "avatar" | "banner";
+  endpoint: "profile-picture" | "banner";
 };
 
 export const uploadFile = (file: File, { endpoint }: UploadFileOptions) => {
