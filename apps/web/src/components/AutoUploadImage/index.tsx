@@ -8,8 +8,8 @@ type Props = {
   label: string;
   id: string;
   name: string;
-  onChange: () => void;
-  onBlur: () => void;
+  onChange: any;
+  onBlur: any;
 };
 
 export const AutoUploadImage = forwardRef<typeof ImageField, Props>(

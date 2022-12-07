@@ -1,3 +1,4 @@
+import { AutoUploadImage } from "@/components/AutoUploadImage";
 import { useZodForm } from "@/hooks/useZodForm";
 import { trpc } from "@/utils/trpc";
 import * as Dialog from "@radix-ui/react-dialog";
@@ -66,6 +67,13 @@ export const EditProfileDialog = ({ isOpen, onClose }: Props) => {
               placeholder="John Doe"
               error={errors.name?.message}
               {...register("name")}
+            />
+
+            <AutoUploadImage
+              endpoint="profile-picture"
+              id="avatar"
+              label="Avatar"
+              {...register("avatarUrl")}
             />
 
             <TextField
