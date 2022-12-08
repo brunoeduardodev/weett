@@ -1,13 +1,12 @@
-import { zodResolver } from "@hookform/resolvers/zod";
 import { CreatePostInput, createPostSchema } from "@weett/schemas";
 import { useCallback } from "react";
-import { useForm } from "react-hook-form";
 import { trpc } from "../../utils/trpc";
 import { Button } from "@weett/ui";
+import { useZodForm } from "@/hooks/useZodForm";
 
 export const NewTweet = () => {
-  const { register, reset, handleSubmit } = useForm<CreatePostInput>({
-    resolver: zodResolver(createPostSchema),
+  const { register, reset, handleSubmit } = useZodForm({
+    schema: createPostSchema,
   });
 
   const utils = trpc.useContext();

@@ -1,10 +1,9 @@
-import { zodResolver } from "@hookform/resolvers/zod";
 import { LoginInput, loginSchema } from "@weett/schemas";
 import { useCallback } from "react";
-import { useForm } from "react-hook-form";
 import { useAuthentication } from "@/contexts/authentication";
 import { trpc } from "@/utils/trpc";
 import { Button, TextButton, TextField } from "@weett/ui";
+import { useZodForm } from "@/hooks/useZodForm";
 
 type Props = {
   onClose: () => void;
@@ -16,8 +15,8 @@ export const LoginForm = ({ onClose, showRegister }: Props) => {
     register,
     formState: { errors },
     handleSubmit,
-  } = useForm<LoginInput>({
-    resolver: zodResolver(loginSchema),
+  } = useZodForm({
+    schema: loginSchema,
   });
 
   const { authenticate } = useAuthentication();
