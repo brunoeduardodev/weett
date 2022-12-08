@@ -4,16 +4,16 @@ import { forwardRef, useState } from "react";
 
 type Props = {
   endpoint: "profile-picture" | "banner";
-
   label: string;
   id: string;
   name: string;
+  kind: "circle" | "rectangle";
   onChange: any;
   onBlur: any;
 };
 
-export const AutoUploadImage = forwardRef<typeof ImageField, Props>(
-  ({ id, label, name, onBlur, onChange }, ref) => {
+export const AutoUploadImageField = forwardRef<typeof ImageField, Props>(
+  ({ id, label, name, kind, onBlur, onChange }, ref) => {
     const [imageUrl, setImageUrl] = useState<string>();
 
     const handleOnChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -29,7 +29,7 @@ export const AutoUploadImage = forwardRef<typeof ImageField, Props>(
     return (
       <div className="flex flex-col gap-2 w-full">
         <ImageField
-          kind="circle"
+          kind={kind}
           label={label}
           name={name}
           id={id}
