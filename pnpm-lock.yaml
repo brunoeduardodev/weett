@@ -175,6 +175,7 @@ importers:
 
   packages/ui:
     specifiers:
+      '@radix-ui/react-icons': ^1.1.1
       '@types/react': ^18.0.17
       '@types/react-dom': ^18.0.6
       '@weett/tailwind': workspace:*
@@ -188,6 +189,7 @@ importers:
       tsconfig: workspace:*
       typescript: ^4.5.2
     dependencies:
+      '@radix-ui/react-icons': 1.1.1_react@18.2.0
       class-variance-authority: 0.4.0_typescript@4.9.3
     devDependencies:
       '@types/react': 18.0.25

@@ -29,13 +29,13 @@ export const AutoUploadImage = forwardRef<typeof ImageField, Props>(
     return (
       <div className="flex flex-col gap-2 w-full">
         <ImageField
+          kind="circle"
           label={label}
           name={name}
           id={id}
           onChange={handleOnChange}
+          preview={imageUrl}
         />
-
-        {imageUrl && <img className="w-10 h-10 rounded-full" src={imageUrl} />}
       </div>
     );
   }

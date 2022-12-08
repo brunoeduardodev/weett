@@ -74,6 +74,7 @@ export const EditProfileDialog = ({ isOpen, onClose }: Props) => {
               id="avatar"
               label="Avatar"
               {...register("avatarUrl")}
+              name="avatar"
             />
 
             <TextField
