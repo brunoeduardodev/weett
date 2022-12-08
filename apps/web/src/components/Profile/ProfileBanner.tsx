@@ -30,11 +30,19 @@ export const ProfileBanner = ({
 }: Props) => {
   return (
     <div className="flex flex-col w-full">
-      <div className={`flex h-40 w-full bg-slate-400`} />
+      <div
+        className={`flex h-40 w-full bg-slate-400`}
+        style={{
+          backgroundImage: bannerUrl ? `url('${bannerUrl}')` : undefined,
+        }}
+      />
       <div className="flex flex-col px-5">
         <div className="flex justify-between items-start ">
           <div className="flex flex-col -mt-14 gap-2">
-            <div className="w-28 h-28 border-[6px] border-white rounded-full bg-slate-400"></div>
+            <img
+              className="w-28 h-28 border-[6px] border-white rounded-full bg-slate-400"
+              src={profileUrl}
+            ></img>
             <div className="flex flex-col">
               <h3 className="text-lg font-bold capitalize">{name}</h3>
               <p className="text-gray-700">{handle}</p>

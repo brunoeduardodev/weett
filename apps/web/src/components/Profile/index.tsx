@@ -30,6 +30,8 @@ export const Profile = () => {
         name={data.profile.name}
         handle={data.handle}
         createdAt={data.createdAt}
+        profileUrl={data.profile.avatarUrl || undefined}
+        bannerUrl={data.profile.bannerUrl || undefined}
         followersCount={169}
         followingCount={400}
         onEditProfile={onOpen}
