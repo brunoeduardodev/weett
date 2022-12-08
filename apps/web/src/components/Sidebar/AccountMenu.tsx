@@ -3,13 +3,12 @@ import { useAuthentication } from "@/contexts/authentication";
 import * as Menu from "../Menu";
 
 type Props = {
-  user: {
-    handle: string;
-    name: string;
-  };
+  name: string;
+  handle: string;
+  avatarUrl?: string;
 };
 
-export const AccountMenu = ({ user }: Props) => {
+export const AccountMenu = ({ name, handle, avatarUrl }: Props) => {
   const router = useRouter();
   const { signOut } = useAuthentication();
 
@@ -17,10 +16,10 @@ export const AccountMenu = ({ user }: Props) => {
     <Menu.Root>
       <Menu.Trigger>
         <div className="flex gap-4 rounded-md hover:bg-gray-50">
-          <div className="w-12 h-12 rounded-full bg-gray-300"></div>
+          <img className="w-12 h-12 rounded-full bg-gray-300" src={avatarUrl} />
           <div className="flex flex-col">
-            <p className="text-lg">{user.name}</p>
-            <p>{user.handle}</p>
+            <p className="text-lg">{name}</p>
+            <p>{handle}</p>
           </div>
         </div>
       </Menu.Trigger>

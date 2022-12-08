@@ -1,5 +1,6 @@
 import { useAuthentication } from "@/contexts/authentication";
 import { useAuthenticationDialog } from "@/contexts/authenticationDialog";
+import { trpc } from "@/utils/trpc";
 import { useRouter } from "next/router";
 import { useCallback } from "react";
 import { AuthDialog } from "../AuthDialog";
@@ -9,6 +10,7 @@ import { SidebarItem } from "./SidebarItem";
 
 export const Sidebar = () => {
   const { user } = useAuthentication();
+  const userQuery = trpc.user.me.useQuery(undefined, { enabled: !!user });
   const { showLogin, showRegister } = useAuthenticationDialog();
 
   const router = useRouter();
@@ -41,8 +43,12 @@ export const Sidebar = () => {
 
       <AuthDialog />
 
-      {user ? (
-        <AccountMenu user={user} />
+      {user && userQuery.data ? (
+        <AccountMenu
+          name={userQuery.data.profile.name}
+          handle={userQuery.data.handle}
+          avatarUrl={userQuery.data.profile.avatarUrl || undefined}
+        />
       ) : (
         <AuthenticationZone onLogin={showLogin} onRegister={showRegister} />
       )}
