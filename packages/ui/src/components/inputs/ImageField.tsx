@@ -45,7 +45,9 @@ export const ImageField = forwardRef<HTMLInputElement, Props>(
               hasPreview: !!preview,
               error: !!error,
             })}
-            style={{ backgroundImage: `url('${preview}')` }}
+            style={{
+              backgroundImage: preview ? `url('${preview}')` : undefined,
+            }}
           >
             <UploadIcon className="text-white w-6 h-8" />
           </div>
