@@ -22,7 +22,10 @@ export const Post = ({ post }: Props) => {
   return (
     <article className="p-4 flex gap-4 items-start ">
       <div className="">
-        <div className="w-12 h-12 rounded-full bg-gray-400" />
+        <img
+          className="w-12 h-12 rounded-full bg-gray-400"
+          src={post.author.profile.avatarUrl || undefined}
+        />
       </div>
 
       <div className="flex flex-col gap-3 flex-1">
