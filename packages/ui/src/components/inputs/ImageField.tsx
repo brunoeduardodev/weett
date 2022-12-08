@@ -57,7 +57,14 @@ export const ImageField = forwardRef<HTMLInputElement, Props>(
           )}
         </label>
 
-        <input hidden id={id} ref={ref} type="file" {...props} />
+        <input
+          hidden
+          id={id}
+          ref={ref}
+          type="file"
+          accept="image/*"
+          {...props}
+        />
       </fieldset>
     );
   }
