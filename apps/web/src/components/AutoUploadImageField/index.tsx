@@ -16,10 +16,10 @@ export const AutoUploadImageField = forwardRef<
   ComponentRef<typeof ImageField>,
   Props
 >(({ id, label, value, name, kind, onChange }, ref) => {
-  const [imageUrl, setImageUrl] = useState<string>();
+  const [previewUrl, setPreviewUrl] = useState<string>();
 
   useEffect(() => {
-    setImageUrl(value);
+    setPreviewUrl(value);
   }, [value]);
 
   const handleOnChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -29,7 +29,7 @@ export const AutoUploadImageField = forwardRef<
     }
 
     const res = await uploadFile(file, { endpoint: "profile-picture" });
-    setImageUrl(res.url);
+    setPreviewUrl(res.url);
     onChange(res.url);
   };
 
@@ -42,7 +42,7 @@ export const AutoUploadImageField = forwardRef<
         name={name}
         id={id}
         onChange={handleOnChange}
-        preview={imageUrl}
+        preview={previewUrl}
       />
     </div>
   );
