@@ -58,7 +58,7 @@ export const ImageField = forwardRef<HTMLInputElement, Props>(
         </label>
 
         <input
-          hidden
+          className="w-[0.1] h-[0.1] opacity-0 absolute overflow-hidden -z-1"
           id={id}
           ref={ref}
           type="file"
