@@ -1,6 +1,6 @@
 import { uploadFile } from "@/services/upload";
 import { ImageField } from "@weett/ui";
-import { ComponentRef, forwardRef, useState } from "react";
+import { ComponentRef, forwardRef, useEffect, useState } from "react";
 
 type Props = {
   endpoint: "profile-picture" | "banner";
@@ -8,14 +8,19 @@ type Props = {
   id: string;
   name: string;
   kind: "circle" | "rectangle";
+  value?: string;
   onChange: (imageUrl: string) => void;
 };
 
 export const AutoUploadImageField = forwardRef<
   ComponentRef<typeof ImageField>,
   Props
->(({ id, label, name, kind, onChange }, ref) => {
+>(({ id, label, value, name, kind, onChange }, ref) => {
   const [imageUrl, setImageUrl] = useState<string>();
+
+  useEffect(() => {
+    setImageUrl(value);
+  }, [value]);
 
   const handleOnChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];

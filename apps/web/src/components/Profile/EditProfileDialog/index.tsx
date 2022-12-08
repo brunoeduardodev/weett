@@ -37,6 +37,8 @@ export const EditProfileDialog = ({ isOpen, onClose }: Props) => {
     reset({
       name: userQuery.data?.profile.name,
       bio: userQuery.data?.profile.bio || "",
+      avatarUrl: userQuery.data?.profile.avatarUrl ?? undefined,
+      bannerUrl: userQuery.data?.profile.bannerUrl ?? undefined,
     });
   }, [userQuery.data?.profile.name, userQuery.data?.profile.bio, reset]);
 
@@ -82,6 +84,7 @@ export const EditProfileDialog = ({ isOpen, onClose }: Props) => {
                   kind="circle"
                   name={field.name}
                   onChange={field.onChange}
+                  value={field.value}
                 />
               )}
             />
@@ -96,6 +99,7 @@ export const EditProfileDialog = ({ isOpen, onClose }: Props) => {
                   label="Banner"
                   kind="rectangle"
                   name={field.name}
+                  value={field.value}
                   onChange={field.onChange}
                 />
               )}
