@@ -23,7 +23,7 @@ export const Post = ({ post }: Props) => {
     <article className="p-4 flex gap-4 items-start ">
       <div className="">
         <img
-          className="w-12 h-12 rounded-full bg-gray-400"
+          className="w-12 h-12 rounded-full bg-gray-400 object-cover"
           src={post.author.profile.avatarUrl || undefined}
         />
       </div>

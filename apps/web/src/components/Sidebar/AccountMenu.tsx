@@ -16,7 +16,10 @@ export const AccountMenu = ({ name, handle, avatarUrl }: Props) => {
     <Menu.Root>
       <Menu.Trigger>
         <div className="flex gap-4 rounded-md hover:bg-gray-50">
-          <img className="w-12 h-12 rounded-full bg-gray-300" src={avatarUrl} />
+          <img
+            className="w-12 h-12 rounded-full bg-gray-300 object-cover"
+            src={avatarUrl}
+          />
           <div className="flex flex-col">
             <p className="text-lg">{name}</p>
             <p>{handle}</p>
