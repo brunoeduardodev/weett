@@ -68,3 +68,5 @@ export const AutoUploadImageField = forwardRef<
     );
   }
 );
+
+AutoUploadImageField.displayName = "AutoUploadImageField";
