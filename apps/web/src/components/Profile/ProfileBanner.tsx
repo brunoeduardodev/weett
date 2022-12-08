@@ -31,7 +31,7 @@ export const ProfileBanner = ({
   return (
     <div className="flex flex-col w-full">
       <div
-        className={`flex h-40 w-full bg-slate-400`}
+        className={`flex h-40 w-full bg-slate-400 bg-cover bg-no-repeat bg-center`}
         style={{
           backgroundImage: bannerUrl ? `url('${bannerUrl}')` : undefined,
         }}
@@ -40,7 +40,7 @@ export const ProfileBanner = ({
         <div className="flex justify-between items-start ">
           <div className="flex flex-col -mt-14 gap-2">
             <img
-              className="w-28 h-28 border-[6px] border-white rounded-full bg-slate-400"
+              className="w-28 h-28 border-[6px] border-white rounded-full bg-slate-400 object-cover"
               src={profileUrl}
             ></img>
             <div className="flex flex-col">
