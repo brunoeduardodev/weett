@@ -5,6 +5,7 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { UpdateSelfInput, updateSelfSchema } from "@weett/schemas";
 import { Button, ImageField, TextField } from "@weett/ui";
 import { useCallback, useEffect } from "react";
+import { Controller } from "react-hook-form";
 
 type Props = {
   isOpen: boolean;
@@ -26,6 +27,7 @@ export const EditProfileDialog = ({ isOpen, onClose }: Props) => {
 
   const {
     register,
+    control,
     handleSubmit,
     formState: { errors },
     reset,
@@ -69,12 +71,34 @@ export const EditProfileDialog = ({ isOpen, onClose }: Props) => {
               {...register("name")}
             />
 
-            <AutoUploadImageField
-              endpoint="profile-picture"
-              id="avatar"
-              label="Avatar"
-              kind="circle"
-              {...register("avatarUrl")}
+            <Controller
+              control={control}
+              name="avatarUrl"
+              render={({ field }) => (
+                <AutoUploadImageField
+                  endpoint="profile-picture"
+                  id="avatar"
+                  label="Avatar"
+                  kind="circle"
+                  name={field.name}
+                  onChange={field.onChange}
+                />
+              )}
+            />
+
+            <Controller
+              control={control}
+              name="bannerUrl"
+              render={({ field }) => (
+                <AutoUploadImageField
+                  endpoint="banner"
+                  id="banner"
+                  label="Banner"
+                  kind="rectangle"
+                  name={field.name}
+                  onChange={field.onChange}
+                />
+              )}
             />
 
             <TextField
