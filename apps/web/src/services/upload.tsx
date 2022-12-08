@@ -4,14 +4,18 @@ type UploadFileOptions = {
   endpoint: "profile-picture" | "banner";
 };
 
-export const uploadFile = (file: File, { endpoint }: UploadFileOptions) => {
+export const uploadFile = async (
+  file: File,
+  { endpoint }: UploadFileOptions
+) => {
   const url = `${envs.uploadUrl}/${endpoint}`;
 
   const formData = new FormData();
   formData.append("file", file);
-
-  return fetch(url, {
+  const response = await fetch(url, {
     method: "POST",
     body: formData,
-  }).then((res) => res.json());
+  });
+  const data = await response.json();
+  return data as { url: string } | { error: string };
 };
