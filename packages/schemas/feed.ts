@@ -13,3 +13,9 @@ export const getFeedSchema = z.object({
 });
 
 export type GetFeedInput = z.infer<typeof getFeedSchema>;
+
+export const likePostSchema = z.object({
+  postId: z.string(),
+});
+
+export type LikePostInput = z.infer<typeof likePostSchema>;
