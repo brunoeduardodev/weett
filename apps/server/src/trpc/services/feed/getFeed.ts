@@ -13,6 +13,14 @@ export const getFeed = async (
       createdAt: "desc",
     },
     include: {
+      _count: {
+        select: { likes: true },
+      },
+      likes: {
+        where: {
+          userId: authorId,
+        },
+      },
       author: {
         select: { id: true, handle: true, profile: true },
       },
@@ -29,8 +37,20 @@ export const getFeed = async (
     nextCursor = posts.pop()!.id;
   }
 
+  const parsedPosts = posts.map((post) => {
+    return {
+      id: post.id,
+      author: post.author,
+      content: post.content,
+      createdAt: post.createdAt,
+      updatedAt: post.updatedAt,
+      likesCount: post._count.likes,
+      liked: post.likes.length > 0,
+    };
+  });
+
   return {
-    posts,
+    posts: parsedPosts,
     nextCursor,
   };
 };
