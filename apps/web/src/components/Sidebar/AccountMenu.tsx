@@ -17,6 +17,7 @@ export const AccountMenu = ({ name, handle, avatarUrl }: Props) => {
       <Menu.Trigger>
         <div className="flex gap-4 rounded-md hover:bg-gray-50">
           <img
+            alt={`${name}'s avatar`}
             className="w-12 h-12 rounded-full bg-gray-300 object-cover"
             src={avatarUrl}
           />

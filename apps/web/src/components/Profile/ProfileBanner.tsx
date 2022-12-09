@@ -41,8 +41,9 @@ export const ProfileBanner = ({
           <div className="flex flex-col -mt-14 gap-2">
             <img
               className="w-28 h-28 border-[6px] border-white rounded-full bg-slate-400 object-cover"
+              alt={`${name}'s avatar`}
               src={profileUrl}
-            ></img>
+            />
             <div className="flex flex-col">
               <h3 className="text-lg font-bold capitalize">{name}</h3>
               <p className="text-gray-700">{handle}</p>

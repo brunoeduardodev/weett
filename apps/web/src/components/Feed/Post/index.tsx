@@ -24,6 +24,7 @@ export const Post = ({ post }: Props) => {
       <div className="">
         <img
           className="w-12 h-12 rounded-full bg-gray-400 object-cover"
+          alt={`${post.author.profile.name}'s avatar`}
           src={post.author.profile.avatarUrl || undefined}
         />
       </div>
