@@ -24,7 +24,7 @@ model User {
   profile   Profile @relation(fields: [profileId], references: [id])
   profileId String  @unique
 
-  Like Like[]
+  like Like[]
 }
 
 model Like {
