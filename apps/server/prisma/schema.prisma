@@ -38,6 +38,8 @@ model Like {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  @@unique([weetId, userId])
 }
 
 model Profile {
