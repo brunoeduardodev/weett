@@ -1,8 +1,13 @@
-import { createPostSchema, likePostSchema } from "@weett/schemas";
+import {
+  createPostSchema,
+  likePostSchema,
+  unlikePostSchema,
+} from "@weett/schemas";
 import { t } from "..";
 import { ensureAuthenticated } from "../middlewares";
 import { createPost } from "../services/post";
 import { likePost } from "../services/post/likePost";
+import { unlikePost } from "../services/post/unlikePost";
 
 export const postRouter = t.router({
   create: t.procedure
@@ -13,4 +18,8 @@ export const postRouter = t.router({
     .input(likePostSchema)
     .use(ensureAuthenticated)
     .mutation(({ input, ctx }) => likePost(input, ctx)),
+  unlike: t.procedure
+    .input(unlikePostSchema)
+    .use(ensureAuthenticated)
+    .mutation(({ input, ctx }) => unlikePost(input, ctx)),
 });
