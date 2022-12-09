@@ -24,7 +24,7 @@ model User {
   profile   Profile @relation(fields: [profileId], references: [id])
   profileId String  @unique
 
-  like Like[]
+  likes Like[]
 }
 
 model Like {
@@ -71,5 +71,5 @@ model Weet {
 
   userId String
 
-  Like Like[]
+  likes Like[]
 }
