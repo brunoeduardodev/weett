@@ -9,7 +9,7 @@ type Props = {
 } & HTMLProps<HTMLInputElement>;
 
 const uploadBoxStyles = cva(
-  "flex flex-col justify-center items-center border-dashed border-2 bg-opacity-50 gap-2 bg-cover bg-no-repeat bg-center",
+  "flex flex-col justify-center items-center border-dashed border-2 bg-opacity-50 gap-2 bg-cover bg-no-repeat bg-center focus-within:outline-2 outline outline-0 outline-sky-500",
   {
     variants: {
       hasPreview: {
@@ -50,21 +50,21 @@ export const ImageField = forwardRef<HTMLInputElement, Props>(
             }}
           >
             <UploadIcon className="text-white w-6 h-8" />
+
+            <input
+              className="w-[0.1] h-[0.1] opacity-0 absolute overflow-hidden -z-1"
+              id={id}
+              ref={ref}
+              type="file"
+              accept="image/*"
+              {...props}
+            />
           </div>
 
           {error && (
             <span className="text-red-500 text-sm font-semibold">{error}</span>
           )}
         </label>
-
-        <input
-          className="w-[0.1] h-[0.1] opacity-0 absolute overflow-hidden -z-1"
-          id={id}
-          ref={ref}
-          type="file"
-          accept="image/*"
-          {...props}
-        />
       </fieldset>
     );
   }
