@@ -19,3 +19,9 @@ export const likePostSchema = z.object({
 });
 
 export type LikePostInput = z.infer<typeof likePostSchema>;
+
+export const unlikePostSchema = z.object({
+  postId: z.string(),
+});
+
+export type UnlikePostInput = z.infer<typeof unlikePostSchema>;
