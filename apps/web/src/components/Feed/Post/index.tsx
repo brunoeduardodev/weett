@@ -22,6 +22,7 @@ export const Post = ({ post }: Props) => {
   const fromNow = dayjs(post.createdAt).fromNow();
 
   const [liked, setLiked] = useState(post.liked);
+  const [likesCount, setLikesCount] = useState(post.likesCount);
 
   const likeMutation = trpc.post.like.useMutation();
   const unlikeMutation = trpc.post.unlike.useMutation();
@@ -30,11 +31,13 @@ export const Post = ({ post }: Props) => {
     (liked: boolean) => {
       try {
         const mutation = liked ? unlikeMutation : likeMutation;
-
         mutation.mutateAsync({ postId: post.id });
         setLiked(!liked);
+
+        setLikesCount((count) => (liked ? count - 1 : count + 1));
       } catch (error) {
         setLiked(liked);
+        setLikesCount((count) => (liked ? count + 1 : count - 1));
       }
     },
     [post.id, likeMutation, unlikeMutation]
@@ -71,6 +74,8 @@ export const Post = ({ post }: Props) => {
 
           <IconButton onClick={() => handleToggleLike(liked)}>
             <HeartIcon className={`${liked ? "text-red-500" : ""}`} />
+
+            <span className="text-sm ml-2">{likesCount > 0 && likesCount}</span>
           </IconButton>
 
           <IconButton>

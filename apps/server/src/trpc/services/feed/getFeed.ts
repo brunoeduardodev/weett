@@ -3,7 +3,7 @@ import { Context } from "../../context";
 
 export const getFeed = async (
   { limit, cursor, authorId }: GetFeedInput,
-  { prisma }: Context
+  { prisma, user }: Context
 ) => {
   const posts = await prisma.weet.findMany({
     take: limit + 1,
@@ -18,7 +18,7 @@ export const getFeed = async (
       },
       likes: {
         where: {
-          userId: authorId,
+          userId: user?.id,
         },
       },
       author: {
