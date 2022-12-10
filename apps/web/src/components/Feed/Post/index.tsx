@@ -9,6 +9,8 @@ import { AppRouter } from "@weett/server";
 import relativeTime from "dayjs/plugin/relativeTime";
 import dayjs from "dayjs";
 import { IconButton } from "@weett/ui";
+import { useCallback, useState } from "react";
+import { trpc } from "@/utils/trpc";
 
 type Props = {
   post: inferRouterOutputs<AppRouter>["feed"]["get"]["posts"][0];
@@ -18,6 +20,25 @@ dayjs.extend(relativeTime);
 
 export const Post = ({ post }: Props) => {
   const fromNow = dayjs(post.createdAt).fromNow();
+
+  const [liked, setLiked] = useState(post.liked);
+
+  const likeMutation = trpc.post.like.useMutation();
+  const unlikeMutation = trpc.post.unlike.useMutation();
+
+  const handleToggleLike = useCallback(
+    (liked: boolean) => {
+      try {
+        const mutation = liked ? unlikeMutation : likeMutation;
+
+        mutation.mutateAsync({ postId: post.id });
+        setLiked(!liked);
+      } catch (error) {
+        setLiked(liked);
+      }
+    },
+    [post.id, likeMutation, unlikeMutation]
+  );
 
   return (
     <article className="p-4 flex gap-4 items-start ">
@@ -48,8 +69,8 @@ export const Post = ({ post }: Props) => {
             <Share2Icon />
           </IconButton>
 
-          <IconButton>
-            <HeartIcon />
+          <IconButton onClick={() => handleToggleLike(liked)}>
+            <HeartIcon className={`${liked ? "text-red-500" : ""}`} />
           </IconButton>
 
           <IconButton>
