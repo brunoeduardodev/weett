@@ -1,11 +1,9 @@
 import { z } from "zod";
+import { handleSchema } from "./handle";
 
 export const registerSchema = z.object({
   name: z.string().min(3),
-  handle: z
-    .string()
-    .min(3)
-    .regex(/^[A-z]*$/, "Should contain only letters"),
+  handle: handleSchema,
   email: z.string().email(),
   password: z.string().min(6),
 });
