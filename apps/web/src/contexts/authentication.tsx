@@ -54,7 +54,6 @@ export const AuthenticationProvider = ({ children }: PropsWithChildren) => {
   );
 
   const signOut = useCallback(() => {
-    console.log("sign out");
     setToken(undefined);
   }, [setToken]);
 
