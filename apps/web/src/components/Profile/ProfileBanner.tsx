@@ -1,5 +1,6 @@
 import { Button } from "@weett/ui";
 import dayjs from "dayjs";
+import { Handle } from "../Handle";
 
 type Props = {
   bannerUrl?: string;
@@ -48,7 +49,7 @@ export const ProfileBanner = ({
             />
             <div className="flex flex-col">
               <h3 className="text-lg font-bold capitalize">{name}</h3>
-              <p className="text-gray-700">{handle}</p>
+              <Handle handle={handle} />
             </div>
           </div>
 

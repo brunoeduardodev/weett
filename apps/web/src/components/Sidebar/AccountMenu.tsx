@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import { useAuthentication } from "@/contexts/authentication";
 import * as Menu from "../Menu";
+import { Handle } from "../Handle";
 
 type Props = {
   name: string;
@@ -23,7 +24,7 @@ export const AccountMenu = ({ name, handle, avatarUrl }: Props) => {
           />
           <div className="flex flex-col">
             <p className="text-lg">{name}</p>
-            <p>{handle}</p>
+            <Handle handle={handle} />
           </div>
         </div>
       </Menu.Trigger>

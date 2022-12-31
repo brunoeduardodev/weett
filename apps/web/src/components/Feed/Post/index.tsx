@@ -13,6 +13,7 @@ import { useCallback, useState } from "react";
 import { trpc } from "@/utils/trpc";
 import { useAuthentication } from "@/contexts/authentication";
 import { useAuthenticationDialog } from "@/contexts/authenticationDialog";
+import { Handle } from "@/components/Handle";
 
 type Props = {
   post: inferRouterOutputs<AppRouter>["feed"]["get"]["posts"][0];
@@ -67,7 +68,7 @@ export const Post = ({ post }: Props) => {
       <div className="flex flex-col gap-3 flex-1">
         <div className="flex items-center gap-4">
           <h3 className="font-bold">{post.author.profile.name}</h3>
-          <p className="text-gray-700">@{post.author.handle}</p>
+          <Handle handle={post.author.handle} />
           <p className="text-gray-500" title={post.createdAt.toLocaleString()}>
             {fromNow}
           </p>
