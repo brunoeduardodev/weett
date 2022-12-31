@@ -16,11 +16,7 @@ export const getFeed = async (
       _count: {
         select: { likes: true },
       },
-      likes: {
-        where: {
-          userId: user?.id,
-        },
-      },
+      likes: user ? { where: { userId: user.id } } : false,
       author: {
         select: { id: true, handle: true, profile: true },
       },
@@ -45,7 +41,7 @@ export const getFeed = async (
       createdAt: post.createdAt,
       updatedAt: post.updatedAt,
       likesCount: post._count.likes,
-      liked: post.likes.length > 0,
+      liked: post.likes?.length > 0,
     };
   });
 
