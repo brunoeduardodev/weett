@@ -11,6 +11,8 @@ import dayjs from "dayjs";
 import { IconButton } from "@weett/ui";
 import { useCallback, useState } from "react";
 import { trpc } from "@/utils/trpc";
+import { useAuthentication } from "@/contexts/authentication";
+import { useAuthenticationDialog } from "@/contexts/authenticationDialog";
 
 type Props = {
   post: inferRouterOutputs<AppRouter>["feed"]["get"]["posts"][0];
@@ -21,6 +23,9 @@ dayjs.extend(relativeTime);
 export const Post = ({ post }: Props) => {
   const fromNow = dayjs(post.createdAt).fromNow();
 
+  const { isSigned } = useAuthentication();
+  const { showLogin } = useAuthenticationDialog();
+
   const [liked, setLiked] = useState(post.liked);
   const [likesCount, setLikesCount] = useState(post.likesCount);
 
@@ -28,19 +33,25 @@ export const Post = ({ post }: Props) => {
   const unlikeMutation = trpc.post.unlike.useMutation();
 
   const handleToggleLike = useCallback(
-    (liked: boolean) => {
+    async (liked: boolean) => {
+      if (!isSigned) {
+        showLogin();
+        return;
+      }
+
       try {
         const mutation = liked ? unlikeMutation : likeMutation;
-        mutation.mutateAsync({ postId: post.id });
         setLiked(!liked);
-
         setLikesCount((count) => (liked ? count - 1 : count + 1));
+
+        await mutation.mutateAsync({ postId: post.id });
       } catch (error) {
+        console.log({ error });
         setLiked(liked);
         setLikesCount((count) => (liked ? count + 1 : count - 1));
       }
     },
-    [post.id, likeMutation, unlikeMutation]
+    [post.id, likeMutation, unlikeMutation, isSigned, showLogin]
   );
 
   return (
