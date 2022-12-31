@@ -14,6 +14,7 @@ type Props = {
   bio: string;
   createdAt: Date;
 
+  canEdit: boolean;
   onEditProfile: () => void;
 };
 
@@ -26,6 +27,7 @@ export const ProfileBanner = ({
   createdAt,
   bannerUrl,
   profileUrl,
+  canEdit,
   onEditProfile,
 }: Props) => {
   return (
@@ -50,9 +52,11 @@ export const ProfileBanner = ({
             </div>
           </div>
 
-          <Button intent="primary" onClick={onEditProfile} className="mt-2">
-            Edit Profile
-          </Button>
+          {canEdit && (
+            <Button intent="primary" onClick={onEditProfile} className="mt-2">
+              Edit Profile
+            </Button>
+          )}
         </div>
 
         <div className="flex flex-col gap-2">

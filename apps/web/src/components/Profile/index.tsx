@@ -1,3 +1,4 @@
+import { useAuthentication } from "@/contexts/authentication";
 import { useDisclosure } from "@/hooks/useDisclosure";
 import { trpc } from "@/utils/trpc";
 import { inferRouterOutputs } from "@trpc/server";
@@ -13,6 +14,8 @@ type Props = {
 };
 
 export const Profile = ({ user }: Props) => {
+  const { user: currentUser } = useAuthentication();
+
   const router = useRouter();
   const { isOpen, onClose, onOpen } = useDisclosure();
 
@@ -32,10 +35,13 @@ export const Profile = ({ user }: Props) => {
         followersCount={169}
         followingCount={400}
         onEditProfile={onOpen}
+        canEdit={currentUser?.id === user.id}
         bio={user.profile.bio || ""}
       />
 
-      <EditProfileDialog isOpen={isOpen} onClose={onClose} />
+      {currentUser?.id === user.id && (
+        <EditProfileDialog isOpen={isOpen} onClose={onClose} />
+      )}
 
       <div className="flex w-full h-[1px] bg-gray-400 my-3" />
 
