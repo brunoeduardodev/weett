@@ -7,8 +7,10 @@ export const updateSelfSchema = z.object({
   bannerUrl: z.string().optional(),
 });
 
+export type UpdateSelfInput = z.infer<typeof updateSelfSchema>;
+
 export const getUserSchema = z.object({
   handle: z.string().min(3),
 });
 
-export type UpdateSelfInput = z.infer<typeof updateSelfSchema>;
+export type GetUserInput = z.infer<typeof getUserSchema>;
