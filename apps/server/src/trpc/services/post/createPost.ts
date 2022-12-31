@@ -1,11 +1,12 @@
 import { CreatePostInput } from "@weett/schemas";
 import { AuthenticatedContext } from "../../context";
+import { getHashtagsFromMessage } from "./getHashtags";
 
 export const createPost = async (
   { content }: CreatePostInput,
   { prisma, user }: AuthenticatedContext
 ) => {
-  const hashtags: string[] = [];
+  const hashtags = getHashtagsFromMessage(content);
 
   const post = await prisma.weet.create({
     data: {
