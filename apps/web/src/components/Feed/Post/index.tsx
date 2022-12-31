@@ -15,6 +15,7 @@ import { useAuthentication } from "@/contexts/authentication";
 import { useAuthenticationDialog } from "@/contexts/authenticationDialog";
 import { Handle } from "@/components/Handle";
 import Link from "next/link";
+import { consts } from "@/config/consts";
 
 type Props = {
   post: inferRouterOutputs<AppRouter>["feed"]["get"]["posts"][0];
@@ -64,9 +65,9 @@ export const Post = ({ post }: Props) => {
         className="bg-black rounded-full"
       >
         <img
-          className="w-12 h-12 rounded-full bg-gray-400 filter hover:opacity-75 transition"
+          className="w-12 h-12 rounded-full bg-gray-400 filter hover:opacity-75 transition object-cover"
           alt={`${post.author.profile.name}'s avatar`}
-          src={post.author.profile.avatarUrl || undefined}
+          src={post.author.profile.avatarUrl || consts.DEFAULT_PROFILE}
         />
       </Link>
 
