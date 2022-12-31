@@ -93,6 +93,7 @@ importers:
       jest-environment-jsdom: ^29.3.1
       jsonwebtoken: ^8.5.1
       next: 13.0.0
+      next-superjson-plugin: ^0.5.2
       postcss: ^8.4.19
       react: 18.2.0
       react-dom: 18.2.0
@@ -118,6 +119,7 @@ importers:
       dayjs: 1.11.6
       jsonwebtoken: 8.5.1
       next: 13.0.0_672uxklweod7ene3nqtsh262ca
+      next-superjson-plugin: 0.5.2_jnee6ebrdbovlksoxmu7gwsa4q
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       react-hook-form: 7.39.7_react@18.2.0
@@ -3623,6 +3625,12 @@ packages:
     dependencies:
       function-bind: 1.1.1
 
+  /hoist-non-react-statics/3.3.2:
+    resolution: {integrity: sha512-/gGivxi8JPKWNm/W0jSmzcMPpfpPLc3dY/6GxhX2hQ9iGj3aDfklV4ET7NjKpSinLpJ5vafa9iiGIEZg10SfBw==}
+    dependencies:
+      react-is: 16.13.1
+    dev: false
+
   /html-encoding-sniffer/3.0.0:
     resolution: {integrity: sha512-oWv4T4yJ52iKrufjnyZPkrN0CH3QnrUqdB6In1g5Fe1mia8GmF36gnfNySxoZtxD5+NmYw1EElVXiBk93UeskA==}
     engines: {node: '>=12'}
@@ -4771,6 +4779,17 @@ packages:
   /negotiator/0.6.3:
     resolution: {integrity: sha512-+EUsqGPLsM+j/zdChZjsnX51g4XrHFOIXwfnCVPGlQk/k5giakcKsuxCObBRu6DSm9opw/O6slWbJdghQM4bBg==}
     engines: {node: '>= 0.6'}
+    dev: false
+
+  /next-superjson-plugin/0.5.2_jnee6ebrdbovlksoxmu7gwsa4q:
+    resolution: {integrity: sha512-k+hetZvvBvzFGxYGULdIZ2Esx0XWlfvXiMa33JW1nRYMp2A7HdU8j4hnM1oMym22bwRpzK9vdryINDLnwfJCwg==}
+    peerDependencies:
+      next: ^13
+      superjson: ^1
+    dependencies:
+      hoist-non-react-statics: 3.3.2
+      next: 13.0.0_672uxklweod7ene3nqtsh262ca
+      superjson: 1.11.0
     dev: false
 
   /next/13.0.0_672uxklweod7ene3nqtsh262ca:
