@@ -8,7 +8,6 @@ import { getUser } from "../services/user/getUser";
 export const userRouter = t.router({
   me: t.procedure.use(ensureAuthenticated).query(({ ctx }) => getSelf(ctx)),
   getUser: t.procedure
-    .use(ensureAuthenticated)
     .input(getUserSchema)
     .query(({ input, ctx }) => getUser(input, ctx)),
   updateSelf: t.procedure
