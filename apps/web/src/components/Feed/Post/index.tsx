@@ -16,6 +16,7 @@ import { useAuthenticationDialog } from "@/contexts/authenticationDialog";
 import { Handle } from "@/components/Handle";
 import Link from "next/link";
 import { consts } from "@/config/consts";
+import { TweetActions } from "./TweetActions";
 
 type Props = {
   post: inferRouterOutputs<AppRouter>["feed"]["get"]["posts"][0];
@@ -25,37 +26,6 @@ dayjs.extend(relativeTime);
 
 export const Post = ({ post }: Props) => {
   const fromNow = dayjs(post.createdAt).fromNow();
-
-  const { isSigned } = useAuthentication();
-  const { showLogin } = useAuthenticationDialog();
-
-  const [liked, setLiked] = useState(post.liked);
-  const [likesCount, setLikesCount] = useState(post.likesCount);
-
-  const likeMutation = trpc.post.like.useMutation();
-  const unlikeMutation = trpc.post.unlike.useMutation();
-
-  const handleToggleLike = useCallback(
-    async (liked: boolean) => {
-      if (!isSigned) {
-        showLogin();
-        return;
-      }
-
-      try {
-        const mutation = liked ? unlikeMutation : likeMutation;
-        setLiked(!liked);
-        setLikesCount((count) => (liked ? count - 1 : count + 1));
-
-        await mutation.mutateAsync({ postId: post.id });
-      } catch (error) {
-        console.log({ error });
-        setLiked(liked);
-        setLikesCount((count) => (liked ? count + 1 : count - 1));
-      }
-    },
-    [post.id, likeMutation, unlikeMutation, isSigned, showLogin]
-  );
 
   return (
     <article className="p-4 flex gap-4 items-start ">
@@ -86,29 +56,7 @@ export const Post = ({ post }: Props) => {
         </div>
         <p>{post.content}</p>
 
-        <div className="flex justify-between w-full">
-          <IconButton>
-            <ChatBubbleIcon />
-          </IconButton>
-
-          <IconButton>
-            <Share2Icon />
-          </IconButton>
-
-          <span className="flex gap-2 items-center">
-            <IconButton onClick={() => handleToggleLike(liked)}>
-              <HeartIcon className={`${liked ? "text-red-500" : ""}`} />
-            </IconButton>
-            <span className="text-sm min-w-[20px]">
-              {likesCount > 0 && likesCount}
-            </span>
-          </span>
-
-          <IconButton>
-            <Share1Icon />
-          </IconButton>
-          <div />
-        </div>
+        <TweetActions post={post} />
       </div>
     </article>
   );
