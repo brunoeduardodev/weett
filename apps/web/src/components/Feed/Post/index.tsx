@@ -17,6 +17,7 @@ import { Handle } from "@/components/Handle";
 import Link from "next/link";
 import { consts } from "@/config/consts";
 import { TweetActions } from "./TweetActions";
+import { TweetContent } from "./TweetContent";
 
 type Props = {
   post: inferRouterOutputs<AppRouter>["feed"]["get"]["posts"][0];
@@ -54,8 +55,8 @@ export const Post = ({ post }: Props) => {
             {fromNow}
           </p>
         </div>
-        <p>{post.content}</p>
 
+        <TweetContent content={post.content} />
         <TweetActions post={post} />
       </div>
     </article>
