@@ -1,5 +1,7 @@
+const tagExpression = /((?:#|@)[a-z]+)/;
+
 export const useTweetContent = (content: string) => {
-  const groups = content.split(" ");
+  const groups = content.split(tagExpression);
 
   const groupsWithType = groups.map((word) => {
     if (word.startsWith("#")) {
