@@ -95,11 +95,14 @@ export const Post = ({ post }: Props) => {
             <Share2Icon />
           </IconButton>
 
-          <IconButton onClick={() => handleToggleLike(liked)}>
-            <HeartIcon className={`${liked ? "text-red-500" : ""}`} />
-
-            <span className="text-sm ml-2">{likesCount > 0 && likesCount}</span>
-          </IconButton>
+          <span className="flex gap-2 items-center">
+            <IconButton onClick={() => handleToggleLike(liked)}>
+              <HeartIcon className={`${liked ? "text-red-500" : ""}`} />
+            </IconButton>
+            <span className="text-sm min-w-[20px]">
+              {likesCount > 0 && likesCount}
+            </span>
+          </span>
 
           <IconButton>
             <Share1Icon />
