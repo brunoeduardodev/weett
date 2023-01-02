@@ -28,7 +28,7 @@ export const getTrending = async ({ prisma }: Context) => {
         ...hashtag,
       };
     })
-    .sort((a, b) => a.count - b.count);
+    .sort((a, b) => b.count - a.count);
 
   return orderedHashtagsWithCount;
 };
