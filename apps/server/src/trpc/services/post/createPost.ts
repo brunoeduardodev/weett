@@ -8,8 +8,6 @@ export const createPost = async (
 ) => {
   const hashtags = getHashtagsFromMessage(content);
 
-  console.log({ hashtags });
-
   const post = await prisma.weet.create({
     data: {
       content,
