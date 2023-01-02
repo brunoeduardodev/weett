@@ -58,20 +58,32 @@ model Hashtag {
   id   String @id @default(cuid())
   name String @unique
 
-  weets Weet[]
+  HashtagUsage HashtagUsage[]
+}
+
+model HashtagUsage {
+  id String @id @default(cuid())
+
+  hashtag Hashtag @relation(fields: [hashtagId], references: [id])
+  weet    Weet    @relation(fields: [weetId], references: [id])
+
+  usedAt DateTime @default(now())
+
+  hashtagId String
+  weetId    String
 }
 
 model Weet {
   id String @id @default(cuid())
 
-  content  String
-  author   User      @relation(fields: [userId], references: [id])
-  hashtags Hashtag[]
+  content String
+  author  User   @relation(fields: [userId], references: [id])
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   userId String
 
-  likes Like[]
+  likes        Like[]
+  hashtagUsage HashtagUsage[]
 }
