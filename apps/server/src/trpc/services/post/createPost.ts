@@ -8,15 +8,22 @@ export const createPost = async (
 ) => {
   const hashtags = getHashtagsFromMessage(content);
 
+  console.log({ hashtags });
+
   const post = await prisma.weet.create({
     data: {
       content,
-      hashtags: {
-        connectOrCreate: hashtags.map((hashtag) => ({
-          create: { name: hashtag },
-          where: { name: hashtag },
+      hashtagUsage: {
+        create: hashtags.map((hashtag) => ({
+          hashtag: {
+            connectOrCreate: {
+              create: { name: hashtag },
+              where: { name: hashtag },
+            },
+          },
         })),
       },
+
       userId: user.id,
     },
   });
