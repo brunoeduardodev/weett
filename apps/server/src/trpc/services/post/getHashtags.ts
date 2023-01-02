@@ -1,8 +1,11 @@
-const hashtagsExpression = /#\w+/g;
-
 export const getHashtagsFromMessage = (message: string) => {
-  const results = hashtagsExpression.exec(message);
-  if (!results) return [];
+  const hashtagsExpression = /#\w+/g;
+  const results: string[] = [];
 
-  return Array.from(results);
+  let result: RegExpExecArray | null;
+  while ((result = hashtagsExpression.exec(message))) {
+    results.push(result[0]);
+  }
+
+  return results;
 };
