@@ -5,11 +5,15 @@ const tagExpression = /((?:#|@)[a-z]+)/;
 const getGroupWithType = (
   group: string
 ): {
+  id: string;
   value: string;
   type: "hashtag" | "tag" | "text";
 } => {
+  const id = crypto.randomUUID();
+
   if (group.startsWith("#")) {
     return {
+      id,
       type: "hashtag",
       value: group.slice(1),
     };
@@ -17,12 +21,14 @@ const getGroupWithType = (
 
   if (group.startsWith("@")) {
     return {
-      type: "hashtag",
+      id,
+      type: "tag",
       value: group.slice(1),
     };
   }
 
   return {
+    id,
     type: "text",
     value: group,
   };
