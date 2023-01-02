@@ -1,4 +1,4 @@
-const hashtagsExpression = /#\w/g;
+const hashtagsExpression = /#\w+/g;
 
 export const getHashtagsFromMessage = (message: string) => {
   const results = hashtagsExpression.exec(message);
