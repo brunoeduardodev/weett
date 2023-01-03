@@ -7,7 +7,7 @@ const TrendingPage: NextPage = () => {
     data: trends,
     error,
     isLoading,
-  } = trpc.hashtags.getTending.useQuery();
+  } = trpc.hashtags.getTending.useQuery({ limit: 50 });
 
   if (isLoading) return <>Loading...</>;
   if (error) return <>Error: {error}</>;

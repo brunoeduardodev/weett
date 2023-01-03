@@ -1,7 +1,7 @@
 import { trpc } from "@/utils/trpc";
 
 export const TrendsOverview = () => {
-  const { data, isLoading, isError } = trpc.hashtags.getTending.useQuery();
+  const { data, isLoading, isError } = trpc.hashtags.getTending.useQuery({});
 
   if (isLoading || isError) return null;
   return (
