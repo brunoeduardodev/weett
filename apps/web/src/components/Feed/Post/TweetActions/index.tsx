@@ -1,3 +1,6 @@
+import { useAuthentication } from "@/contexts/authentication";
+import { useAuthenticationDialog } from "@/contexts/authenticationDialog";
+import { useDisclosure } from "@/hooks/useDisclosure";
 import {
   ChatBubbleIcon,
   HeartIcon,
@@ -8,6 +11,7 @@ import {
 import { inferRouterOutputs } from "@trpc/server";
 import { AppRouter } from "@weett/server";
 import { IconButton } from "@weett/ui";
+import { ReplyDialog } from "./ReplyDialog";
 import { useTweetActions } from "./useTweetActions";
 
 type Props = {
@@ -16,10 +20,29 @@ type Props = {
 
 export const TweetActions = ({ post }: Props) => {
   const { liked, likesCount, toggleLike } = useTweetActions(post);
+  const { isSigned } = useAuthentication();
+  const { showLogin } = useAuthenticationDialog();
+  const reply = useDisclosure();
 
   return (
     <div className="flex justify-between w-full">
-      <IconButton>
+      <ReplyDialog
+        isOpen={reply.isOpen}
+        onClose={reply.onClose}
+        onSubmit={console.log}
+        post={post}
+      />
+
+      <IconButton
+        onClick={() => {
+          if (!isSigned) {
+            showLogin();
+            return;
+          }
+
+          reply.onOpen();
+        }}
+      >
         <ChatBubbleIcon />
       </IconButton>
 
