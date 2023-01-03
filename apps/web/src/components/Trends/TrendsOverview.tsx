@@ -5,7 +5,7 @@ export const TrendsOverview = () => {
 
   if (isLoading || isError) return null;
   return (
-    <section className="flex flex-col bg-gray-100 h-[420px] w-full p-4 gap-2">
+    <section className="flex flex-col bg-gray-100 min-h-[420px] w-full p-4 gap-2">
       <p className="text-lg font-bold mb-2">Trending</p>
 
       <div className="flex flex-col gap-4">
