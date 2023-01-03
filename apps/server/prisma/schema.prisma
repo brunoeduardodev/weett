@@ -86,4 +86,8 @@ model Weet {
 
   likes        Like[]
   hashtagUsage HashtagUsage[]
+
+  replies   Weet[]  @relation("replies")
+  repliesTo Weet?   @relation("replies", fields: [replyId], references: [id])
+  replyId   String?
 }
