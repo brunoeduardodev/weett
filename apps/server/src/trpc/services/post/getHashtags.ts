@@ -4,6 +4,8 @@ export const getHashtagsFromMessage = (message: string) => {
 
   let result: RegExpExecArray | null;
   while ((result = hashtagsExpression.exec(message))) {
+    if (results.indexOf(result[0]) !== -1) continue;
+
     results.push(result[0]);
   }
 
