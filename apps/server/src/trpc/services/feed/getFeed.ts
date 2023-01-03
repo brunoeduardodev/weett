@@ -14,7 +14,7 @@ export const getFeed = async (
     },
     include: {
       _count: {
-        select: { likes: true },
+        select: { likes: true, replies: true },
       },
       likes: user ? { where: { userId: user.id } } : false,
       author: {
@@ -42,6 +42,7 @@ export const getFeed = async (
       updatedAt: post.updatedAt,
       likesCount: post._count.likes,
       liked: post.likes?.length > 0,
+      repliesCount: post._count.replies,
     };
   });
 
