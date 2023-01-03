@@ -25,3 +25,10 @@ export const unlikePostSchema = z.object({
 });
 
 export type UnlikePostInput = z.infer<typeof unlikePostSchema>;
+
+export const replyPostSchema = z.object({
+  postId: z.string(),
+  content: z.string(),
+});
+
+export type ReplyPostInput = z.infer<typeof replyPostSchema>;
