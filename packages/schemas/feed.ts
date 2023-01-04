@@ -10,6 +10,12 @@ export const getFeedSchema = z.object({
   limit: z.number().max(50).default(20),
   cursor: z.string().nullish(),
   authorId: z.string().optional(),
+  search: z
+    .object({
+      content: z.string().optional(),
+      hashtags: z.array(z.string()).optional(),
+    })
+    .optional(),
 });
 
 export type GetFeedInput = z.infer<typeof getFeedSchema>;
