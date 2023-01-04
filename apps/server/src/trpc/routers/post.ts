@@ -1,5 +1,6 @@
 import {
   createPostSchema,
+  getPostSchema,
   likePostSchema,
   replyPostSchema,
   unlikePostSchema,
