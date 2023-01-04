@@ -25,6 +25,7 @@ export const getFeed = async (
       author: {
         id: authorId,
       },
+      replyId: null,
     },
   });
 
