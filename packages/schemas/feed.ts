@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { z, ZodLazy } from "zod";
 
 export const createPostSchema = z.object({
   content: z.string().min(2).max(255),
@@ -38,3 +38,9 @@ export const replyPostSchema = z.object({
 });
 
 export type ReplyPostInput = z.infer<typeof replyPostSchema>;
+
+export const getPostSchema = z.object({
+  postId: z.string(),
+});
+
+export type GetPostInput = z.infer<typeof getPostSchema>;
