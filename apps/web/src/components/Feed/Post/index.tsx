@@ -9,7 +9,7 @@ import { AppRouter } from "@weett/server";
 import relativeTime from "dayjs/plugin/relativeTime";
 import dayjs from "dayjs";
 import { IconButton } from "@weett/ui";
-import { useCallback, useState } from "react";
+import { MouseEventHandler, useCallback, useState } from "react";
 import { trpc } from "@/utils/trpc";
 import { useAuthentication } from "@/contexts/authentication";
 import { useAuthenticationDialog } from "@/contexts/authenticationDialog";
@@ -18,6 +18,7 @@ import Link from "next/link";
 import { consts } from "@/config/consts";
 import { TweetActions } from "./TweetActions";
 import { TweetContent } from "./TweetContent";
+import { useRouter } from "next/router";
 
 type Props = {
   post: inferRouterOutputs<AppRouter>["feed"]["get"]["posts"][0];
@@ -27,9 +28,34 @@ dayjs.extend(relativeTime);
 
 export const Post = ({ post }: Props) => {
   const fromNow = dayjs(post.createdAt).fromNow();
+  const router = useRouter();
+
+  const handleClick = useCallback<MouseEventHandler>(
+    ({ currentTarget, target }) => {
+      if (target !== currentTarget) return;
+
+      router.push(`${post.author.handle}/weet/${post.id}`);
+    },
+    [router, post]
+  );
+
+  const handleEnter = useCallback<React.KeyboardEventHandler>(
+    ({ target, currentTarget, key }) => {
+      if (key !== "Enter") return;
+      if (target !== currentTarget) return;
+
+      router.push(`${post.author.handle}/weet/${post.id}`);
+    },
+    [router, post]
+  );
 
   return (
-    <article className="p-4 flex gap-4 items-start ">
+    <article
+      tabIndex={0}
+      className="py-6 px-4 flex gap-4 items-start focus:bg-gray-100 focus:outline-blue-500 focus:outline focus-within:bg-gray-100 hover:bg-gray-100 cursor-pointer transition-colors rounded"
+      onClick={handleClick}
+      onKeyDown={handleEnter}
+    >
       <Link
         href={`/${post.author.handle}`}
         aria-label={post.author.profile.name}

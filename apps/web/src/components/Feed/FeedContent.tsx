@@ -21,7 +21,7 @@ export const FeedRenderer = ({ authorId, search }: Props) => {
   );
 
   return (
-    <div className="flex flex-col space-y-4 divide-y-4 divide-gray-50">
+    <div className="flex flex-col space-y-1 divide-y-4 divide-gray-50">
       {data?.pages.map((page) => (
         <Fragment key={page.nextCursor}>
           {page.posts.map((post) => (
