@@ -8,6 +8,7 @@ import {
 import { t } from "..";
 import { ensureAuthenticated } from "../middlewares";
 import { createPost } from "../services/post";
+import { getPost } from "../services/post/getPost";
 import { likePost } from "../services/post/likePost";
 import { reply } from "../services/post/reply";
 import { unlikePost } from "../services/post/unlikePost";
@@ -29,4 +30,7 @@ export const postRouter = t.router({
     .input(replyPostSchema)
     .use(ensureAuthenticated)
     .mutation(({ input, ctx }) => reply(input, ctx)),
+  get: t.procedure
+    .input(getPostSchema)
+    .query(({ input, ctx }) => getPost(input, ctx)),
 });
