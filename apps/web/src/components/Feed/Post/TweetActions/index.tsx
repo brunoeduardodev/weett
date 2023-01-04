@@ -28,18 +28,23 @@ export const TweetActions = ({ post }: Props) => {
     <div className="flex justify-between w-full">
       <ReplyDialog isOpen={reply.isOpen} onClose={reply.onClose} post={post} />
 
-      <IconButton
-        onClick={() => {
-          if (!isSigned) {
-            showLogin();
-            return;
-          }
+      <span className="flex gap-2 items-center">
+        <IconButton
+          onClick={() => {
+            if (!isSigned) {
+              showLogin();
+              return;
+            }
 
-          reply.onOpen();
-        }}
-      >
-        <ChatBubbleIcon />
-      </IconButton>
+            reply.onOpen();
+          }}
+        >
+          <ChatBubbleIcon />
+        </IconButton>
+        <span className="txt-sm min-w-[20px]">
+          {post.repliesCount > 0 && post.repliesCount}
+        </span>
+      </span>
 
       <IconButton>
         <Share2Icon />
