@@ -2,7 +2,7 @@ import { GetFeedInput } from "@weett/schemas";
 import { Context } from "../../context";
 
 export const getFeed = async (
-  { limit, cursor, authorId }: GetFeedInput,
+  { limit, cursor, authorId, search }: GetFeedInput,
   { prisma, user }: Context
 ) => {
   const posts = await prisma.weet.findMany({
@@ -30,6 +30,20 @@ export const getFeed = async (
         id: authorId,
       },
       replyId: null,
+      ...(search?.hashtags
+        ? {
+            hashtagUsage: {
+              some: { hashtag: { name: { in: search.hashtags } } },
+            },
+          }
+        : {}),
+      ...(search?.content
+        ? {
+            content: {
+              contains: search.content,
+            },
+          }
+        : {}),
     },
   });
 
