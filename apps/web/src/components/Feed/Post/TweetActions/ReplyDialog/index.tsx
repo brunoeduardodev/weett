@@ -21,14 +21,23 @@ export const ReplyDialog = ({ isOpen, onClose, post }: Props) => {
   const { data: currentUser, isLoading, error } = trpc.user.me.useQuery();
   const body = useBody();
 
+  const { mutate, isLoading: isReplyLoading } = trpc.post.reply.useMutation({
+    onSuccess: () => {
+      onClose();
+    },
+  });
+
   const { register, handleSubmit } = useZodForm({
     schema: replyPostSchema,
     defaultValues: { postId: post.id },
   });
 
-  const onSubmit = useCallback((input: ReplyPostInput) => {
-    console.log({ input });
-  }, []);
+  const onSubmit = useCallback(
+    (input: ReplyPostInput) => {
+      mutate(input);
+    },
+    [mutate]
+  );
 
   if (!currentUser || isLoading || error) return null;
 
@@ -57,7 +66,11 @@ export const ReplyDialog = ({ isOpen, onClose, post }: Props) => {
                   {...register("content")}
                 />
               </div>
-              <Button className="self-end rounded-full" type="submit">
+              <Button
+                className="self-end rounded-full"
+                type="submit"
+                isLoading={isReplyLoading}
+              >
                 Send
               </Button>
             </form>
