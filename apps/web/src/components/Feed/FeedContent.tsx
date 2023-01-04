@@ -4,13 +4,18 @@ import { Post } from "./Post";
 
 type Props = {
   authorId?: string;
+  search?: {
+    hashtags?: string[];
+    content?: string;
+  };
 };
 
-export const FeedRenderer = ({ authorId }: Props) => {
+export const FeedRenderer = ({ authorId, search }: Props) => {
   const { data } = trpc.feed.get.useInfiniteQuery(
     {
       limit: 20,
       authorId,
+      search,
     },
     { getNextPageParam: (lastPage) => lastPage.nextCursor }
   );
