@@ -20,6 +20,10 @@ export const getFeed = async (
       author: {
         select: { id: true, handle: true, profile: true },
       },
+      replies: {
+        orderBy: { likes: { _count: "desc" } },
+        take: 1,
+      },
     },
     where: {
       author: {
@@ -43,6 +47,7 @@ export const getFeed = async (
       updatedAt: post.updatedAt,
       likesCount: post._count.likes,
       liked: post.likes?.length > 0,
+      topReply: post.replies[0],
       repliesCount: post._count.replies,
     };
   });
