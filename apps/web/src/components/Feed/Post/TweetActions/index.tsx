@@ -26,12 +26,7 @@ export const TweetActions = ({ post }: Props) => {
 
   return (
     <div className="flex justify-between w-full">
-      <ReplyDialog
-        isOpen={reply.isOpen}
-        onClose={reply.onClose}
-        onSubmit={console.log}
-        post={post}
-      />
+      <ReplyDialog isOpen={reply.isOpen} onClose={reply.onClose} post={post} />
 
       <IconButton
         onClick={() => {
