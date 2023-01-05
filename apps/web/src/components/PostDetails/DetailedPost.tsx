@@ -43,24 +43,7 @@ export const DetailedPost = ({ post }: Props) => {
 
       <p className="text-gray-600">{dayjs(post.createdAt).fromNow()}</p>
 
-      <div className="flex-col w-full">
-        <div className="flex gap-2 w-full border-t border-t-gray-300 py-3 text-sm">
-          <p>
-            <strong>0</strong> Retweets
-          </p>
-          <p>
-            <strong>{post.likesCount}</strong> Likes
-          </p>
-
-          <p>
-            <strong>{post.repliesCount}</strong> Replies
-          </p>
-        </div>
-
-        <div className="flex gap-2 w-full border-t border-t-gray-300 py-4 text-sm">
-          <TweetActions post={post} type="expanded" />
-        </div>
-      </div>
+      <TweetActions post={post} type="expanded" />
     </div>
   );
 };

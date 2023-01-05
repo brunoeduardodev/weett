@@ -34,6 +34,9 @@ const Action = ({ Icon, count, onClick, type }: ActionProps) => {
   return (
     <div className="flex gap-2 items-center">
       <IconButton
+        className={`${
+          type === "compact" ? "w-8 h-8 text-base" : "w-10 h-10 text-xl"
+        } `}
         onClick={(e) => {
           e.stopPropagation();
 
@@ -59,25 +62,59 @@ export const TweetActions = ({ post, type = "compact" }: Props) => {
   const reply = useDisclosure();
 
   return (
-    <div className="flex justify-between w-full">
-      <ReplyDialog isOpen={reply.isOpen} onClose={reply.onClose} post={post} />
+    <div className="flex flex-col w-full">
+      {type === "expanded" && (
+        <div className="flex gap-2 w-full border-b border-t border-gray-300 py-3 text-sm">
+          <p>
+            <strong>0</strong> Retweets
+          </p>
+          <p>
+            <strong>{likesCount}</strong> Likes
+          </p>
 
-      <Action
-        Icon={<ChatBubbleIcon />}
-        type={type}
-        onClick={() => reply.onOpen()}
-        count={post.repliesCount}
-      />
+          <p>
+            <strong>{post.repliesCount}</strong> Replies
+          </p>
+        </div>
+      )}
+      <div
+        className={`flex ${
+          type === "compact" ? "justify-between" : "justify-around"
+        } w-full py-1`}
+      >
+        <ReplyDialog
+          isOpen={reply.isOpen}
+          onClose={reply.onClose}
+          post={post}
+        />
 
-      <Action
-        Icon={<HeartIcon className={liked ? "text-red-500" : ""} />}
-        type={type}
-        onClick={() => toggleLike(liked)}
-        count={likesCount}
-      />
+        <Action
+          Icon={<ChatBubbleIcon />}
+          type={type}
+          onClick={() => reply.onOpen()}
+          count={post.repliesCount}
+        />
 
-      <Action Icon={<Share2Icon />} type={type} onClick={() => {}} count={0} />
-      <Action Icon={<Share1Icon />} type={type} onClick={() => {}} count={0} />
+        <Action
+          Icon={<HeartIcon className={liked ? "text-red-500" : ""} />}
+          type={type}
+          onClick={() => toggleLike(liked)}
+          count={likesCount}
+        />
+
+        <Action
+          Icon={<Share2Icon />}
+          type={type}
+          onClick={() => {}}
+          count={0}
+        />
+        <Action
+          Icon={<Share1Icon />}
+          type={type}
+          onClick={() => {}}
+          count={0}
+        />
+      </div>
     </div>
   );
 };
