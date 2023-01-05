@@ -7,12 +7,12 @@ export const getTrending = async (
 ) => {
   const ONE_DAY_IN_MS = 24 * 60 * 60 * 1000;
 
-  const yesterday = new Date(new Date().getTime() - ONE_DAY_IN_MS);
+  const threeDaysAgo = new Date(new Date().getTime() - 3 * ONE_DAY_IN_MS);
 
   const topUsages = await prisma.hashtagUsage.groupBy({
     by: ["hashtagId"],
     _count: { hashtagId: true },
-    where: { usedAt: { gt: yesterday } },
+    where: { usedAt: { gt: threeDaysAgo } },
     orderBy: { _count: { hashtagId: "desc" } },
     take: limit,
   });
