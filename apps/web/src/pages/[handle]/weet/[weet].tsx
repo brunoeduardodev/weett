@@ -15,7 +15,7 @@ const WeetPage: NextPage = () => {
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>{error.message}</div>;
 
-  return <h1>{weet.author.handle}</h1>;
+  return <h1>{weet.author.profile.name}</h1>;
 };
 
 export default WeetPage;

@@ -1,4 +1,4 @@
-import { Like, User, Weet } from "@prisma/client";
+import { Like, Profile, User, Weet } from "@prisma/client";
 import { TRPCError } from "@trpc/server";
 import { GetPostInput } from "@weett/schemas";
 import { Context } from "../../context";
@@ -10,14 +10,15 @@ export const getPost = async (
   const post = await prisma.weet.findUnique({
     where: { id: postId },
     include: {
-      author: true,
+      author: { include: { profile: true } },
       _count: {
         select: { likes: true, replies: true },
       },
       likes: { where: { userId: user?.id } },
       repliesTo: {
         include: {
-          author: true,
+          author: { include: { profile: true } },
+
           _count: {
             select: { likes: true, replies: true },
           },
@@ -26,7 +27,7 @@ export const getPost = async (
       },
       replies: {
         include: {
-          author: true,
+          author: { include: { profile: true } },
           _count: {
             select: { likes: true, replies: true },
           },
@@ -42,7 +43,7 @@ export const getPost = async (
 
   const parsePost = (
     post: Weet & {
-      author: User;
+      author: User & { profile: Profile };
       likes: Like[];
       _count: { likes: number; replies: number };
     }
