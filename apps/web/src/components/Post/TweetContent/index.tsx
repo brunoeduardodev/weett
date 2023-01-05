@@ -16,7 +16,7 @@ export const TweetContent = ({ content }: Props) => {
             <Link
               key={group.id}
               href={`/hashtags/${group.value}`}
-              className="text-blue-500 inline"
+              className="text-blue-500 inline hover:underline"
             >
               #{group.value}
             </Link>
@@ -28,7 +28,7 @@ export const TweetContent = ({ content }: Props) => {
             <Link
               key={group.id}
               href={`/${group.value}`}
-              className="text-blue-500 inline"
+              className="text-blue-500 inline hover:underline"
             >
               @{group.value}
             </Link>
