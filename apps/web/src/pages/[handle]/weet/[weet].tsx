@@ -1,3 +1,4 @@
+import { DetailedPost } from "@/components/PostDetails/DetailedPost";
 import { trpc } from "@/utils/trpc";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
@@ -15,7 +16,11 @@ const WeetPage: NextPage = () => {
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>{error.message}</div>;
 
-  return <h1>{weet.author.profile.name}</h1>;
+  return (
+    <div className="flex flex-col w-full">
+      <DetailedPost post={weet} />
+    </div>
+  );
 };
 
 export default WeetPage;
