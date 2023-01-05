@@ -1,13 +1,18 @@
 import { consts } from "@/config/consts";
 import { inferRouterOutputs } from "@trpc/server";
 import { AppRouter } from "@weett/server";
+import relativeTime from "dayjs/plugin/relativeTime";
 import dayjs from "dayjs";
 import Link from "next/link";
 import { Handle } from "../Handle";
+import { TweetContent } from "../Post/TweetContent";
+import { TweetActions } from "../Post/TweetActions";
 
 type Props = {
   post: inferRouterOutputs<AppRouter>["post"]["get"];
 };
+
+dayjs.extend(relativeTime);
 
 export const DetailedPost = ({ post }: Props) => {
   return (
@@ -34,7 +39,7 @@ export const DetailedPost = ({ post }: Props) => {
         </div>
       </div>
 
-      <p>{post.content}</p>
+      <TweetContent content={post.content} />
 
       <p className="text-gray-600">{dayjs(post.createdAt).fromNow()}</p>
 
@@ -52,7 +57,9 @@ export const DetailedPost = ({ post }: Props) => {
           </p>
         </div>
 
-        <div className="flex gap-2 w-full border-t border-t-gray-300 py-4 text-sm"></div>
+        <div className="flex gap-2 w-full border-t border-t-gray-300 py-4 text-sm">
+          <TweetActions post={post} type="expanded" />
+        </div>
       </div>
     </div>
   );

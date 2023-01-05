@@ -61,7 +61,7 @@ export const getFeed = async (
       updatedAt: post.updatedAt,
       likesCount: post._count.likes,
       liked: post.likes?.length > 0,
-      topReply: post.replies[0],
+      // topReply: post.replies[0],
       repliesCount: post._count.replies,
     };
   });

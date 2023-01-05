@@ -11,68 +11,73 @@ import {
 import { inferRouterOutputs } from "@trpc/server";
 import { AppRouter } from "@weett/server";
 import { IconButton } from "@weett/ui";
+import { ReactElement } from "react";
 import { ReplyDialog } from "./ReplyDialog";
 import { useTweetActions } from "./useTweetActions";
 
 type Props = {
+  type?: "compact" | "expanded";
   post: inferRouterOutputs<AppRouter>["feed"]["get"]["posts"][0];
 };
 
-export const TweetActions = ({ post }: Props) => {
-  const { liked, likesCount, toggleLike } = useTweetActions(post);
-  const { isSigned } = useAuthentication();
+type ActionProps = {
+  Icon: ReactElement;
+  count: number;
+  type: "compact" | "expanded";
+  onClick: () => void;
+};
+
+const Action = ({ Icon, count, onClick, type }: ActionProps) => {
   const { showLogin } = useAuthenticationDialog();
+  const { isSigned } = useAuthentication();
+
+  return (
+    <div className="flex gap-2 items-center">
+      <IconButton
+        onClick={(e) => {
+          e.stopPropagation();
+
+          if (!isSigned) {
+            showLogin();
+            return;
+          }
+
+          onClick();
+        }}
+      >
+        {Icon}
+      </IconButton>
+      {type === "compact" && (
+        <span className="text-sm min-w-[20px]">{count > 0 && count}</span>
+      )}
+    </div>
+  );
+};
+
+export const TweetActions = ({ post, type = "compact" }: Props) => {
+  const { liked, likesCount, toggleLike } = useTweetActions(post);
   const reply = useDisclosure();
 
   return (
     <div className="flex justify-between w-full">
       <ReplyDialog isOpen={reply.isOpen} onClose={reply.onClose} post={post} />
 
-      <span className="flex gap-2 items-center">
-        <IconButton
-          onClick={(e) => {
-            e.stopPropagation();
-            if (!isSigned) {
-              showLogin();
-              return;
-            }
+      <Action
+        Icon={<ChatBubbleIcon />}
+        type={type}
+        onClick={() => reply.onOpen()}
+        count={post.repliesCount}
+      />
 
-            reply.onOpen();
-          }}
-        >
-          <ChatBubbleIcon />
-        </IconButton>
-        <span className="txt-sm min-w-[20px]">
-          {post.repliesCount > 0 && post.repliesCount}
-        </span>
-      </span>
+      <Action
+        Icon={<HeartIcon className={liked ? "text-red-500" : ""} />}
+        type={type}
+        onClick={() => toggleLike(liked)}
+        count={likesCount}
+      />
 
-      <IconButton
-        onClick={(e) => {
-          e.stopPropagation();
-        }}
-      >
-        <Share2Icon />
-      </IconButton>
-
-      <span className="flex gap-2 items-center">
-        <IconButton
-          onClick={(e) => {
-            e.stopPropagation();
-            toggleLike(liked);
-          }}
-        >
-          <HeartIcon className={`${liked ? "text-red-500" : ""}`} />
-        </IconButton>
-        <span className="text-sm min-w-[20px]">
-          {likesCount > 0 && likesCount}
-        </span>
-      </span>
-
-      <IconButton>
-        <Share1Icon />
-      </IconButton>
-      <div />
+      <Action Icon={<Share2Icon />} type={type} onClick={() => {}} count={0} />
+      <Action Icon={<Share1Icon />} type={type} onClick={() => {}} count={0} />
     </div>
   );
 };
