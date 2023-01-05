@@ -8,6 +8,7 @@ import { Handle } from "../../Handle";
 import { TweetContent } from "../../Post/TweetContent";
 import { TweetActions } from "../../Post/TweetActions";
 import { Reply } from "./Reply";
+import { FeedPost } from "@/components/Feed/FeedPost";
 
 type Props = {
   post: inferRouterOutputs<AppRouter>["post"]["get"];
@@ -47,6 +48,12 @@ export const DetailedPost = ({ post }: Props) => {
       <TweetActions post={post} type="expanded" />
 
       <Reply postId={post.id} />
+
+      <div className="flex-col gap-2 divide-y divide-gray-300">
+        {post.replies.map((reply) => (
+          <FeedPost post={reply} />
+        ))}
+      </div>
     </div>
   );
 };

@@ -36,7 +36,7 @@ export const FeedPost = ({ post }: Props) => {
       const isP = target instanceof HTMLParagraphElement;
       if (target !== currentTarget && !isDiv && !isP) return;
 
-      router.push(`${post.author.handle}/weet/${post.id}`);
+      router.push(`/${post.author.handle}/weet/${post.id}`);
     },
     [router, post]
   );
