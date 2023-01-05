@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 import { trpc } from "../../utils/trpc";
-import { Post } from "./Post";
+import { FeedPost } from "./FeedPost";
 
 type Props = {
   authorId?: string;
@@ -25,7 +25,7 @@ export const FeedRenderer = ({ authorId, search }: Props) => {
       {data?.pages.map((page) => (
         <Fragment key={page.nextCursor}>
           {page.posts.map((post) => (
-            <Post key={post.id} post={post} />
+            <FeedPost key={post.id} post={post} />
           ))}
         </Fragment>
       ))}

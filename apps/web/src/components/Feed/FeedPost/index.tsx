@@ -16,8 +16,8 @@ import { useAuthenticationDialog } from "@/contexts/authenticationDialog";
 import { Handle } from "@/components/Handle";
 import Link from "next/link";
 import { consts } from "@/config/consts";
-import { TweetActions } from "./TweetActions";
-import { TweetContent } from "./TweetContent";
+import { TweetActions } from "../../Post/TweetActions";
+import { TweetContent } from "../../Post/TweetContent";
 import { useRouter } from "next/router";
 
 type Props = {
@@ -26,7 +26,7 @@ type Props = {
 
 dayjs.extend(relativeTime);
 
-export const Post = ({ post }: Props) => {
+export const FeedPost = ({ post }: Props) => {
   const fromNow = dayjs(post.createdAt).fromNow();
   const router = useRouter();
 
