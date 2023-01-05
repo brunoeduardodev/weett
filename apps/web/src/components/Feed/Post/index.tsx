@@ -32,7 +32,9 @@ export const Post = ({ post }: Props) => {
 
   const handleClick = useCallback<MouseEventHandler>(
     ({ currentTarget, target }) => {
-      if (target !== currentTarget) return;
+      const isDiv = target instanceof HTMLDivElement;
+      const isP = target instanceof HTMLParagraphElement;
+      if (target !== currentTarget && !isDiv && !isP) return;
 
       router.push(`${post.author.handle}/weet/${post.id}`);
     },

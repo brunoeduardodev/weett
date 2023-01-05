@@ -44,9 +44,12 @@ export const ReplyDialog = ({ isOpen, onClose, post }: Props) => {
   return (
     <Dialog.Root open={isOpen} onOpenChange={onClose}>
       <Dialog.Portal container={body}>
-        <Dialog.DialogOverlay className="bg-black bg-opacity-25 fixed inset-0 transition-colors ease-in-out duration-300 z-50" />
+        <Dialog.DialogOverlay className="bg-black bg-opacity-25 fixed inset-0 transition-colors ease-in-out duration-300 z-50 pointer-events-none" />
 
-        <Dialog.Content className="bg-white rounded-sm shadow-lg fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[90vw] max-h-[85vh] max-w-xl p-6 animate-modal-open flex flex-col z-50">
+        <Dialog.Content
+          onClick={(e) => e.stopPropagation()}
+          className="bg-white rounded-sm shadow-lg fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[90vw] max-h-[85vh] max-w-xl p-6 animate-modal-open flex flex-col z-50"
+        >
           <div className="flex flex-col">
             <PostPreview post={post} />
             <form

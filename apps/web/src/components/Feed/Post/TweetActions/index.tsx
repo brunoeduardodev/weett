@@ -30,7 +30,8 @@ export const TweetActions = ({ post }: Props) => {
 
       <span className="flex gap-2 items-center">
         <IconButton
-          onClick={() => {
+          onClick={(e) => {
+            e.stopPropagation();
             if (!isSigned) {
               showLogin();
               return;
@@ -46,12 +47,21 @@ export const TweetActions = ({ post }: Props) => {
         </span>
       </span>
 
-      <IconButton>
+      <IconButton
+        onClick={(e) => {
+          e.stopPropagation();
+        }}
+      >
         <Share2Icon />
       </IconButton>
 
       <span className="flex gap-2 items-center">
-        <IconButton onClick={() => toggleLike(liked)}>
+        <IconButton
+          onClick={(e) => {
+            e.stopPropagation();
+            toggleLike(liked);
+          }}
+        >
           <HeartIcon className={`${liked ? "text-red-500" : ""}`} />
         </IconButton>
         <span className="text-sm min-w-[20px]">
