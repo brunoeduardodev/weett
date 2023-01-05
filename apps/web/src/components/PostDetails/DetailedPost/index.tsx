@@ -45,14 +45,16 @@ export const DetailedPost = ({ post }: Props) => {
 
       <p className="text-gray-600">{dayjs(post.createdAt).fromNow()}</p>
 
-      <TweetActions post={post} type="expanded" />
+      <div className="flex-col w-full">
+        <TweetActions post={post} type="expanded" />
 
-      <Reply postId={post.id} />
+        <Reply postId={post.id} />
 
-      <div className="flex-col gap-2 divide-y divide-gray-300">
-        {post.replies.map((reply) => (
-          <FeedPost post={reply} />
-        ))}
+        <div className="flex-col gap-2 divide-y divide-gray-300">
+          {post.replies.map((reply) => (
+            <FeedPost post={reply} />
+          ))}
+        </div>
       </div>
     </div>
   );

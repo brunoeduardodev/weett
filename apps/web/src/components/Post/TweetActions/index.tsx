@@ -79,8 +79,8 @@ export const TweetActions = ({ post, type = "compact" }: Props) => {
       )}
       <div
         className={`flex ${
-          type === "compact" ? "justify-between" : "justify-around"
-        } w-full py-1`}
+          type === "compact" ? "justify-between" : "justify-around py-2"
+        } w-full`}
       >
         <ReplyDialog
           isOpen={reply.isOpen}
