@@ -4,9 +4,10 @@ import { AppRouter } from "@weett/server";
 import relativeTime from "dayjs/plugin/relativeTime";
 import dayjs from "dayjs";
 import Link from "next/link";
-import { Handle } from "../Handle";
-import { TweetContent } from "../Post/TweetContent";
-import { TweetActions } from "../Post/TweetActions";
+import { Handle } from "../../Handle";
+import { TweetContent } from "../../Post/TweetContent";
+import { TweetActions } from "../../Post/TweetActions";
+import { Reply } from "./Reply";
 
 type Props = {
   post: inferRouterOutputs<AppRouter>["post"]["get"];
@@ -44,6 +45,8 @@ export const DetailedPost = ({ post }: Props) => {
       <p className="text-gray-600">{dayjs(post.createdAt).fromNow()}</p>
 
       <TweetActions post={post} type="expanded" />
+
+      <Reply postId={post.id} />
     </div>
   );
 };
