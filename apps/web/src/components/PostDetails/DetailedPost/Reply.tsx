@@ -25,7 +25,6 @@ export const Reply = ({ postId }: Props) => {
 
   const onSubmit = useCallback(
     (data: ReplyPostInput) => {
-      console.log({ data });
       replyMutation.mutate(data);
     },
     [replyMutation]
