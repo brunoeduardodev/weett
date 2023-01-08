@@ -43,7 +43,9 @@ export const DetailedPost = ({ post }: Props) => {
 
       <TweetContent content={post.content} />
 
-      <p className="text-gray-600">{dayjs(post.createdAt).fromNow()}</p>
+      <p className="text-gray-600" title={post.createdAt.toLocaleString()}>
+        {dayjs(post.createdAt).fromNow()}
+      </p>
 
       <div className="flex-col w-full">
         <TweetActions post={post} type="expanded" />

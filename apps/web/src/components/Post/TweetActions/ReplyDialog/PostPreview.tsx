@@ -31,7 +31,9 @@ export const PostPreview = ({ post }: Props) => {
         <div className="flex gap-1">
           <p className="font-bold">{post.author.profile.name}</p>
           <Handle handle={post.author.handle} />
-          <p className="text-gray-600">{fromNow}</p>
+          <p className="text-gray-600" title={post.createdAt.toLocaleString()}>
+            {fromNow}
+          </p>
         </div>
 
         <p className="pb-3">{post.content}</p>
