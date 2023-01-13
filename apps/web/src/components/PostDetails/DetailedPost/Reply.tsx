@@ -17,9 +17,12 @@ export const Reply = ({ postId }: Props) => {
     defaultValues: { postId },
   });
 
+  const utils = trpc.useContext();
+
   const replyMutation = trpc.post.reply.useMutation({
     onSuccess: () => {
       reset();
+      utils.post.get.invalidate({ postId });
     },
   });
 
