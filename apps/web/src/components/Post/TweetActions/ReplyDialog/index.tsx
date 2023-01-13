@@ -21,9 +21,12 @@ export const ReplyDialog = ({ isOpen, onClose, post }: Props) => {
   const { data: currentUser, isLoading, error } = trpc.user.me.useQuery();
   const body = useBody();
 
+  const utils = trpc.useContext();
+
   const { mutate, isLoading: isReplyLoading } = trpc.post.reply.useMutation({
     onSuccess: () => {
       onClose();
+      utils.post.get.invalidate({ postId: post.id });
     },
   });
 
